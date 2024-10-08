@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
     AtSymbolIcon,
     KeyIcon,
@@ -23,13 +24,15 @@ const LoginForm: React.FC = () => {
             {/* Left Side - Logo and Motto */}
             <div className="flex-1 flex flex-col items-center justify-center bg-white text-red-400 p-4 md:p-0">
                 <div className="flex items-center justify-center h-48">
-                    <Image
-                        src="/logo.png" // Replace with your logo path
-                        alt="Logo"
-                        width={410}
-                        height={200}
-                        className="object-contain"
-                    />
+                    <Link href={"/"}>
+                        <Image
+                            src="/logo.png" // Replace with your logo path
+                            alt="Logo"
+                            width={410}
+                            height={200}
+                            className="object-contain"
+                        />
+                    </Link>
                 </div>
                 <h1 className="text-4xl font-bold mb-4">Lost & Found</h1>
                 <p className="text-lg text-center px-4">
@@ -77,7 +80,7 @@ const LoginForm: React.FC = () => {
                         </div>
                         <button
                             type="submit"
-                            className="w-full text-red-300 py-2 outline outline-red-300 rounded-md font-semibold hover:bg-red-300 hover:text-white transition duration-300"
+                            className="w-full text-red-300 py-2 outline outline-red-300 rounded-md font-semibold hover:bg-red-700 hover:text-white transition duration-300"
                         >
                             Log In
                         </button>
