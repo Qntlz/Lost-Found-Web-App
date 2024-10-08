@@ -1,101 +1,127 @@
-import Image from "next/image";
+import Link from 'next/link';
+import { Metadata } from 'next';
+import Image from 'next/image';
+import { playfairDisplay, inter } from './ui/fonts';
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: 'Lost & Found',
+};
+
+const LandingPage = () => {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen flex flex-col bg-[url('/Background.svg')] bg-contain">
+      {/* Navbar */}
+      <header className="shadow-md">
+        <nav className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+          {/* Logo */}
+          <div className="flex items-start">
+            <Link href={"/"}>
+              <Image
+                src="/logo.png"
+                alt="Logo"
+                width={100}
+                height={200}
+                className="object-contain"
+              />
+            </Link>
+          </div>
+          {/* Login Link */}
+          <div>
+            <Link href="/login">
+              <p className={`${inter.className} text-red-500 font-bold text-xl transition-transform ease-in-out duration-300 hover:scale-110`}>
+                LOG IN
+              </p>
+            </Link>
+          </div>
+        </nav>
+      </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Hero Section */}
+      <section className="flex-1 flex items-center justify-center text-center">
+        <div className="max-w-4xl px-6 mb-40">
+          <h1 className={`${playfairDisplay.className} text-7xl font-bold text-gray-800 mb-8 pt-16`}>
+            LOST & FOUND
+          </h1>
+          <p className={`${inter.className} text-2xl text-red-600 font-extrabold`}>
+            "Find What’s Lost, Faster"
+          </p>
+          <div className='mt-10 mb-5'>
+            <button className='py-2 rounded-md transition ease-in-out delay-75 outline outline-red-500 hover:-translate-y-1 hover:scale-110 hover:bg-red-500 duration-300'>
+              <Link href="/login" className="px-8 py-3 text-red-600 font-bold hover:text-white">
+                Get Started
+              </Link>
+            </button>
+          </div>
+          <div className=''>
+            <p className={`${inter.className} px-4 md:px-20 lg:px-40 text-center py-5 text-pretty text-lg text-gray-800`}>
+              Lost & Found is a streamlined platform designed to help users quickly recover lost items.
+              With real-time updates and an intuitive interface, it connects those who’ve lost items with
+              the people who find them, making the process simple, efficient, and stress-free.
+            </p>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </section>
+
+      {/* Features Section */}
+      <section className="bg-white py-12">
+        <div className="max-w-7xl mb-40 mx-auto px-4 sm:px-6 lg:px-8 grid gap-12 grid-cols-1 md:grid-cols-3">
+          <div className="text-center">
+            <div className="flex justify-center mb-4 mt-5">
+              <Image
+                src="/Centralized.png"
+                alt="Feature 1"
+                width={300}
+                height={450}
+                className="object-contain transition-transform duration-300 ease-in-out hover:scale-110"
+              />
+            </div>
+            <h3 className="text-xl font-bold text-gray-800 mb-2">Centralized Platform</h3>
+            <p className="text-gray-600">
+              Manage all your lost and found items in one convenient platform.
+            </p>
+          </div>
+
+          <div className="text-center">
+            <div className="flex justify-center mb-4 mt-5">
+              <Image
+                src="/RealTime.png"
+                alt="Feature 2"
+                width={300}
+                height={450}
+                className="object-contain transition-transform duration-300 ease-in-out hover:scale-110"
+              />
+            </div>
+            <h3 className="text-xl font-bold text-gray-800 mb-2">Real-time Updates</h3>
+            <p className="text-gray-600">
+              Stay informed with instant notifications on found items.
+            </p>
+          </div>
+          <div className="text-center">
+            <div className="flex justify-center mb-4 mt-5">
+              <Image
+                src="/SimpleEfficient.png"
+                alt="Feature 3"
+                width={300}
+                height={450}
+                className="object-contain transition-transform duration-300 ease-in-out hover:scale-110"
+              />
+            </div>
+            <h3 className="text-xl font-bold text-gray-800 mb-2">Simple & Efficient</h3>
+            <p className="text-gray-600">
+              Easily track and retrieve items with minimal effort.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-red-400">
+          &#169; {new Date().getFullYear()} Lost & Found&#8482; . All rights reserved.
+        </div>
       </footer>
     </div>
   );
-}
+};
+
+export default LandingPage;
