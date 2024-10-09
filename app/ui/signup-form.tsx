@@ -3,9 +3,14 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { AtSymbolIcon, KeyIcon, UserCircleIcon, CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/outline';
+import { AtSymbolIcon, KeyIcon, UserCircleIcon, CheckCircleIcon, XCircleIcon, EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from '@/firebaseConfig'; // Import Firebase auth configuration
+import { useRouter } from 'next/navigation'; // Import useRouter to redirect
 
 const SignupForm = () => {
+    const router = useRouter(); // Initialize the router
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -20,6 +25,8 @@ const SignupForm = () => {
     });
 
     const [isPasswordValid, setIsPasswordValid] = useState(false);
+    const [error, setError] = useState<string | null>(null); // To handle errors
+    const [showPassword, setShowPassword] = useState(false); // State for password visibility
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -48,21 +55,37 @@ const SignupForm = () => {
         );
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setError(null); // Reset error state
+
         if (isPasswordValid) {
-            // Handle form submission logic here
-            console.log('Form submitted:', formData);
+            try {
+                // Firebase authentication
+                const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+                console.log('User signed up:', userCredential.user);
+
+                // You can redirect to the login page
+                router.push('/login');
+            } catch (error: any) {
+                setError(error.message);
+                console.log('Error signing up:', error.message);
+            }
         } else {
             console.log('Password is invalid');
         }
+    };
+
+    // Toggle password visibility
+    const togglePasswordVisibility = () => {
+        setShowPassword((prev) => !prev);
     };
 
     return (
         <div className="min-h-screen flex items-center justify-center">
             <div className="w-full max-w-md p-8 bg-[url('/Background.svg')] bg-contain rounded-lg shadow-md">
                 <h2 className="text-2xl font-bold text-center text-red-400 mb-6">Create an Account</h2>
-                <div className=' flex items-center justify-center'>
+                <div className='flex items-center justify-center'>
                     <Image
                         src="/logo.png" // Replace with your logo path
                         alt="Logo"
@@ -113,7 +136,7 @@ const SignupForm = () => {
                         <label htmlFor="password" className="block text-sm font-medium text-red-700">Password</label>
                         <div className="relative">
                             <input
-                                type="password"
+                                type={showPassword ? 'text' : 'password'} // Toggle between text and password
                                 id="password"
                                 name="password"
                                 value={formData.password}
@@ -124,22 +147,23 @@ const SignupForm = () => {
                                 minLength={8}
                             />
                             <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+                            {/* Toggle password visibility icon */}
+                            <button
+                                type="button"
+                                onClick={togglePasswordVisibility}
+                                className="absolute right-3 top-1/2 -translate-y-1/2"
+                            >
+                                {showPassword ? <EyeIcon className="h-5 w-5 text-gray-500" /> : <EyeSlashIcon className="h-5 w-5 text-gray-500" />}
+                            </button>
                         </div>
                     </div>
 
-                    {/* Sign Up Button */}
-                    <button
-                        type="submit"
-                        className={`w-full bg-red-400 text-white py-2 rounded-md font-semibold hover:bg-red-300 transition duration-300 ${!isPasswordValid ? 'opacity-50 cursor-not-allowed' : ''
-                            }`}
-                        disabled={!isPasswordValid}
-                    >
-                        Sign Up
-                    </button>
+                    {/* Error Message */}
+                    {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
 
                     {/* Password requirement hints with icons */}
                     <div className="mt-4 text-sm text-gray-600">
-                        <p>Password must contain:</p>
+                        <p className='mb-1'>Password must contain:</p>
                         <ul className="list-none space-y-2">
                             <li className="flex items-center">
                                 {passwordConditions.hasUpperCase ? (
@@ -175,6 +199,17 @@ const SignupForm = () => {
                             </li>
                         </ul>
                     </div>
+
+                    {/* Sign Up Button */}
+                     <button
+                        type="submit"
+                        className={`w-full bg-red-400 text-white py-2 mt-4 rounded-md font-semibold hover:bg-red-700 transition duration-300 ${!isPasswordValid ? 'opacity-50 cursor-not-allowed' : ''
+                            }`}
+                        disabled={!isPasswordValid}
+                    >
+                        Sign Up
+                    </button>
+
                 </form>
 
                 <p className="mt-6 text-center text-gray-600">
