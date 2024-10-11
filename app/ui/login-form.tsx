@@ -49,9 +49,9 @@ const LoginForm: React.FC = () => {
                 <div className="flex items-center justify-center h-48">
                     <Link href={"/"}>
                         <Image
-                            src="/logo.png" // Replace with your logo path
+                            src="/logo.svg" // Replace with your logo path
                             alt="Logo"
-                            width={410}
+                            width={190}
                             height={200}
                             className="object-contain transition-transform duration-300 ease-in-out hover:scale-110"
                         />

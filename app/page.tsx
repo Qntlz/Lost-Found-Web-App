@@ -17,10 +17,10 @@ const LandingPage = () => {
           <div className="flex items-start">
             <Link href={"/"}>
               <Image
-                src="/logo.png"
+                src="/logo.svg"
                 alt="Logo"
-                width={100}
-                height={200}
+                width={55}
+                height={100}
                 className="object-contain"
               />
             </Link>
@@ -68,7 +68,7 @@ const LandingPage = () => {
           <div className="text-center">
             <div className="flex justify-center mb-4 mt-5">
               <Image
-                src="/Centralized.png"
+                src="/Centralized.svg"
                 alt="Feature 1"
                 width={300}
                 height={450}
@@ -84,7 +84,7 @@ const LandingPage = () => {
           <div className="text-center">
             <div className="flex justify-center mb-4 mt-5">
               <Image
-                src="/RealTime.png"
+                src="/RealTime.svg"
                 alt="Feature 2"
                 width={300}
                 height={450}
@@ -99,7 +99,7 @@ const LandingPage = () => {
           <div className="text-center">
             <div className="flex justify-center mb-4 mt-5">
               <Image
-                src="/SimpleEfficient.png"
+                src="/SimpleEfficient.svg"
                 alt="Feature 3"
                 width={300}
                 height={450}

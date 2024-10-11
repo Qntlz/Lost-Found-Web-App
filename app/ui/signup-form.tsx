@@ -8,7 +8,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '@/firebaseConfig'; // Import Firebase auth configuration
 import { useRouter } from 'next/navigation'; // Import useRouter to redirect
 
-const SignupForm = () => {
+export default function SignupForm () {
     const router = useRouter(); // Initialize the router
 
     const [formData, setFormData] = useState({
@@ -22,6 +22,7 @@ const SignupForm = () => {
         hasLowerCase: false,
         hasNumber: false,
         hasSpecialChar: false,
+        hasMinLength: false, // Add password length condition
     });
 
     const [isPasswordValid, setIsPasswordValid] = useState(false);
@@ -42,16 +43,18 @@ const SignupForm = () => {
         const hasLowerCase = /[a-z]/.test(password);
         const hasNumber = /\d/.test(password);
         const hasSpecialChar = /[!@#$*&]/.test(password);
+        const hasMinLength = password.length >= 8; // Check if password length is >= 8
 
         setPasswordConditions({
             hasUpperCase,
             hasLowerCase,
             hasNumber,
             hasSpecialChar,
+            hasMinLength, // Update state with length condition
         });
 
         setIsPasswordValid(
-            hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar && password.length >= 8
+            hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar && hasMinLength
         );
     };
 
@@ -87,11 +90,11 @@ const SignupForm = () => {
                 <h2 className="text-2xl font-bold text-center text-red-400 mb-6">Create an Account</h2>
                 <div className='flex items-center justify-center'>
                     <Image
-                        src="/logo.png" // Replace with your logo path
+                        src="/logo.svg" // Replace with your logo path
                         alt="Logo"
-                        width={150}
+                        width={100}
                         height={0}
-                        className="items-center"
+                        className="items-center transition-transform duration-300 ease-in-out hover:scale-110"
                     />
                 </div>
                 <form onSubmit={handleSubmit}>
@@ -197,6 +200,14 @@ const SignupForm = () => {
                                 )}
                                 At least one special character (!, @, #, $, *, &)
                             </li>
+                            <li className="flex items-center">
+                                {passwordConditions.hasMinLength ? (
+                                    <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2" />
+                                ) : (
+                                    <XCircleIcon className="h-5 w-5 text-red-500 mr-2" />
+                                )}
+                                At least 8 characters
+                            </li>
                         </ul>
                     </div>
 
@@ -223,4 +234,4 @@ const SignupForm = () => {
     );
 };
 
-export default SignupForm;
+//export default SignupForm;
