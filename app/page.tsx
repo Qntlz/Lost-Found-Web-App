@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Lost & Found',
 };
 
-const LandingPage = () => {
+export default function LandingPage () {
   return (
     <div className="min-h-screen flex flex-col bg-[url('/Background.svg')] bg-contain">
       {/* Navbar */}
@@ -28,7 +28,7 @@ const LandingPage = () => {
           {/* Login Link */}
           <div>
             <Link href="/login">
-              <p className={`${inter.className} text-red-500 font-bold text-xl transition-transform ease-in-out duration-300 hover:scale-110`}>
+              <p className={`${inter.className} text-red-500 font-medium text-xl transition-transform ease-in-out duration-300 hover:scale-110`}>
                 LOG IN
               </p>
             </Link>
@@ -46,7 +46,7 @@ const LandingPage = () => {
             "Find What’s Lost, Faster"
           </p>
           <div className='mt-10 mb-5'>
-            <button className='py-2 rounded-md transition ease-in-out delay-75 outline outline-red-500 hover:-translate-y-1 hover:scale-110 hover:bg-red-500 duration-300'>
+            <button className='py-2 rounded-md transition ease-in-out delay-75 outline outline-red-500 hover:-translate-y-1 hover:scale-110 hover:bg-red-500 hover:outline-none duration-300'>
               <Link href="/login" className="px-8 py-3 text-red-600 font-bold hover:text-white">
                 Get Started
               </Link>
@@ -124,4 +124,3 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
