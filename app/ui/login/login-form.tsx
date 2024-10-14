@@ -9,7 +9,7 @@ import {
     EyeIcon,
     EyeSlashIcon,
 } from '@heroicons/react/24/outline';
-import LogoMotto from './login/logoMotto';
+import LogoMotto from './logoMotto';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '@/firebaseConfig';            // Make sure this is the correct path to your Firebase config
 import { useRouter } from 'next/navigation';        // Import useRouter to redirect
