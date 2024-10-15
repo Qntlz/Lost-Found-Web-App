@@ -7,8 +7,10 @@ import { AtSymbolIcon, KeyIcon, UserCircleIcon, CheckCircleIcon, XCircleIcon, Ey
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from '@/firebaseConfig'; // Import Firebase auth configuration
 import { useRouter } from 'next/navigation'; // Import useRouter to redirect
+import { updateProfile } from 'firebase/auth'; // Make sure to import updateProfile
+import SuccessAccount from './successful';
 
-export default function SignupForm () {
+export default function SignupForm() {
     const router = useRouter(); // Initialize the router
 
     const [formData, setFormData] = useState({
@@ -28,6 +30,7 @@ export default function SignupForm () {
     const [isPasswordValid, setIsPasswordValid] = useState(false);
     const [error, setError] = useState<string | null>(null); // To handle errors
     const [showPassword, setShowPassword] = useState(false); // State for password visibility
+    const [showSuccess, setShowSuccess] = useState(false); // New state to show success message
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -66,10 +69,20 @@ export default function SignupForm () {
             try {
                 // Firebase authentication
                 const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
-                console.log('User signed up:', userCredential.user);
+                const user = userCredential.user;
+                console.log('User signed up:', user);
+
+                // Update profile to include the name
+                await updateProfile(user, {
+                    displayName: formData.name,
+                });
+                console.log('User signed up and profile updated:', user);
 
                 // You can redirect to the login page
-                router.push('/login');
+                // router.push('/login');
+
+                setShowSuccess(true);
+
             } catch (error: any) {
                 setError(error.message);
                 console.log('Error signing up:', error.message);
@@ -83,6 +96,15 @@ export default function SignupForm () {
     const togglePasswordVisibility = () => {
         setShowPassword((prev) => !prev);
     };
+
+    const goToLogin = () => {
+        router.push('/login');
+    };
+
+    // If sign-up is successful, show the Successful component
+    if (showSuccess) {
+        return <SuccessAccount onGoToLogin={goToLogin} />;
+    }
 
     return (
         <div className="min-h-screen flex items-center justify-center">
@@ -212,7 +234,7 @@ export default function SignupForm () {
                     </div>
 
                     {/* Sign Up Button */}
-                     <button
+                    <button
                         type="submit"
                         className={`w-full bg-red-400 text-white py-2 mt-4 rounded-md font-semibold hover:bg-red-700 transition duration-300 ${!isPasswordValid ? 'opacity-50 cursor-not-allowed' : ''
                             }`}
