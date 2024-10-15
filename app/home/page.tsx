@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
 import ProtectedRoute from '../lib/ProtectedRoute';
-import LogoutButton from '../ui/signout';
+import LogoutButton from '../ui/home/signout';
 import { inter } from '../ui/fonts';
 import Header from '../ui/home/header/navbar';
 import Sidebar from '../ui/home/sidebar';
 import PostFeed from '../ui/home/postFeed';
-import Announcements from '../ui/home/announcements';
+import Announcements from '../ui/announcement/announcements';
 
 
 export const metadata: Metadata = {
