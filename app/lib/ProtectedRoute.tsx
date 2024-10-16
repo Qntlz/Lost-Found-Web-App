@@ -8,30 +8,23 @@ interface ProtectedRouteProps {
     children: ReactNode;
 }
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
+export default function ProtectedRoute({ children }: ProtectedRouteProps) {
     const { user, loading } = useAuth();
     const router = useRouter();
 
     useEffect(() => {
         if (!loading && !user) {
-            router.push('/'); // Redirect to landing page if not authenticated  change to: '/login' to redirect to login
+            router.push('/login'); // Redirect to login if not authenticated
         }
     }, [user, loading, router]);
 
-    /*
-    Protected Route Testing
-    useEffect(() => {
-        if (!loading) {
-            router.push('/login'); // Redirect to login if not authenticated
-        }
-    }, [loading, router]);
-    */
-
+    // // Optional: Display a loading state while checking authentication
     // if (loading) {
-    //     return <div>Loading...</div>; // Show loading while authentication state is being checked
+    //     return <div>Loading...</div>;
     // }
 
-    return <>{user && children}</>; // Render the component if authenticated
-};
+    // Render children if authenticated
+    return <>{user && children}</>;
+}
 
-export default ProtectedRoute;
+
