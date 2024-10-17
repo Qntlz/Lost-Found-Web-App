@@ -18,8 +18,6 @@ export default function Homepage() {
     <ProtectedRoute>
 
       <div className="min-h-screen">
-        {/* Header Section */}
-        < Header />
         
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 divide-x-4 p-4">
