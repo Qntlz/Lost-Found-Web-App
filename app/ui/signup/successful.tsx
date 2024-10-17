@@ -34,8 +34,7 @@ export default function SuccessAccount({ onGoToLogin }: { onGoToLogin: () => voi
 
                 {/* Button to go to login page immediately */}
                 <button
-                    onClick={onGoToLogin}
-                    className="mt-4 px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-700 transition duration-300"
+                    className="mt-4 px-6 py-2 font-medium text-red-500 border-2 border-transparent hover:border-red-500"
                 >
                     Go to Login
                 </button>
