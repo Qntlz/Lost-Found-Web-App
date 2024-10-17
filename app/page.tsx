@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
 import Image from 'next/image';
-import { playfairDisplay, inter } from './ui/fonts';
+import { inter, playfairDisplay } from './ui/fonts';
 
 export const metadata: Metadata = {
   title: 'Lost & Found',
@@ -42,7 +42,7 @@ export default function LandingPage () {
           <h1 className={`${playfairDisplay.className} text-7xl font-bold text-gray-800 mb-8 pt-16`}>
             LOST & FOUND
           </h1>
-          <p className={`${inter.className} text-2xl text-red-600 font-extrabold`}>
+          <p className={`${inter.className} text-2xl text-red-600 font-semibold`}>
             "Find What’s Lost, Faster"
           </p>
           <div className='mt-10 mb-5'>
