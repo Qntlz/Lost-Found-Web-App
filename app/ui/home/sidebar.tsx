@@ -41,15 +41,16 @@ export default function Sidebar() {
             </button>
 
             {/* Left Sidebar */}
-            <div className={`lg:col-span-2 mt-3 rounded-lg hidden lg:block`}>
+            <div className={`lg:col-span-2 m-3 rounded-lg hidden lg:block`}>
                 <button className={`ml-4 mt-5 text-red-500 px-4 py-2 rounded-lg ${inter.className} flex items-center transition duration-0 hover:duration-150 hover:scale-110`}>
                     <PencilSquareIcon className="h-6 w-6 mr-2" />
                     New Post
                 </button>
-                <button className={`ml-4 text-red-500 px-4 py-2 rounded-lg sm:text-left ${inter.className} flex items-center transition duration-0 hover:duration-150 hover:scale-110`}>
+                {/* Announcement Feature for Adminds Only */}
+                {/* <button className={`ml-4  text-red-500 px-4 py-2 rounded-lg sm:text-left ${inter.className} flex items-center transition duration-0 hover:duration-150 hover:scale-110`}>
                     <MegaphoneIcon className="h-6 w-6 mr-2 -rotate-[20deg]" />
                     New Announcement
-                </button>
+                </button> */}
                 <button className={`ml-4 text-red-500 px-4 py-2 rounded-lg ${inter.className} flex items-center transition duration-0 hover:duration-150 hover:scale-110`}>
                     <ChatBubbleLeftRightIcon className="h-6 w-6 mr-2" />
                     Chats
