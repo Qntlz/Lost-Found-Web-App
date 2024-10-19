@@ -33,7 +33,7 @@ export default function Homepage() {
           </div>
 
           {/* Right Sidebar */}
-          <div className="lg:col-span-3 p-4 rounded-lg mt-3">
+          <div className="lg:col-span-3 p-4 mt-3">
              < Announcements />
           </div>
         </div>
