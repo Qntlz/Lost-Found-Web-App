@@ -10,8 +10,9 @@ export default function Header() {
 
   return (
     <div className="relative">
-      <header className="bg-white shadow p-4 md:flex flex-col sm:flex-row justify-between items-center">
-        <div className="flex items-center">
+      <header className="bg-white shadow p-4 flex flex-col md:flex-row justify-between items-center">
+        {/* Left: Logo */}
+        <div className="flex items-center justify-between w-full md:w-auto">
           <div className="w-12 h-12 rounded-full flex items-center justify-center text-white text-xl">
             <Link href="/home">
               <Image
@@ -23,28 +24,36 @@ export default function Header() {
               />
             </Link>
           </div>
-          {/* Search Bar */}
-          <div className="ml-4 flex items-center">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search by tags (e.g., red, aquaflask)"
-                className="border border-gray-300 rounded-lg p-2 w-full sm:w-80"
-              />
-              <button className="absolute right-0 top-0 h-full px-3 rounded-r-lg">
-                <MagnifyingGlassCircleIcon className="h-6 w-6 text-gray-500" />
-              </button>
-            </div>
+
+          {/* Right: Notifications and Avatar */}
+          <div className="flex space-x-7 md:hidden"> {/* hidden on large screens */}
+            <button className="relative">
+              <BellAlertIcon className="h-6 w-6 transition duration-0 hover:duration-150 hover:scale-110" />
+            </button>
+            <ProfileInterface />
           </div>
         </div>
 
-        {/* Icons: Notifications, Avatar */}
-        <div className="flex space-x-7 mt-4 sm:mt-0 relative">
+        {/* Center: Search Bar */}
+        <div className="mt-2 md:mt-0 sm:mx-5 w-full md:w-[680px] flex justify-center order-3 md:order-2">
+          <div className="relative w-full ">
+            <input
+              type="text"
+              placeholder="Search by tags (e.g., red, aquaflask)"
+              className="border border-gray-300 rounded-lg p-2 w-full"
+            />
+            <button className="absolute right-0 top-0 h-full px-3 rounded-r-lg">
+              <MagnifyingGlassCircleIcon className="h-6 w-6 text-gray-500" />
+            </button>
+          </div>
+        </div>
+
+        {/* Right: Notifications and Avatar (shown on large screens) */}
+        <div className="hidden md:flex space-x-7 order-2 md:order-3"> {/* hidden on small screens */}
           <button className="relative">
             <BellAlertIcon className="h-6 w-6 transition duration-0 hover:duration-150 hover:scale-110" />
           </button>
-          < ProfileInterface />
-          
+          <ProfileInterface />
         </div>
       </header>
     </div>
