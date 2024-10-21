@@ -43,14 +43,91 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col md:flex-row">
-            {/* Left Side - Logo and Motto */}
-            < LogoMotto />
+        <div className="relative">
+            {/* Large Screen View */}
+            <div className="min-h-screen hidden flex-row md:flex">
+                {/* Left Side - Logo and Motto */}
+                < LogoMotto />
 
-            {/* Right Side - Login Form */}
-            <div className="flex-1 flex items-center justify-center bg-red-400 p-4 md:p-0">
-                <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
-                    <h2 className="text-4xl font-semibold text-center text-red-400 mb-6">Login</h2>
+                {/* Right Side - Login Form */}
+                <div className="flex-1 flex items-center justify-center bg-red-400 p-4 md:p-0">
+                    <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
+                        <h2 className="text-4xl font-semibold text-center text-red-400 mb-6">Login</h2>
+                        <form onSubmit={handleSubmit} className="space-y-6">
+                            <div>
+                                <label htmlFor="email" className="block text-sm font-medium text-red-400">
+                                    Email
+                                </label>
+                                <div className="relative">
+                                    <input
+                                        id="email"
+                                        type="email"
+                                        name="email"
+                                        placeholder="Enter your email address"
+                                        required
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        className="mt-1 block w-full px-4 py-2 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-300 focus:border-transparent placeholder:text-gray-500"
+                                    />
+                                    <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+                                </div>
+                            </div>
+                            <div>
+                                <label htmlFor="password" className="block text-sm font-medium text-red-400">
+                                    Password
+                                </label>
+                                <div className="relative">
+                                    <input
+                                        id="password"
+                                        type={showPassword ? 'text' : 'password'} // Toggle between text and password 
+                                        name="password"
+                                        placeholder="Enter password"
+                                        required
+                                        value={password}
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        minLength={8}
+                                        className="mt-1 block w-full px-4 py-2 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-300 focus:border-transparent placeholder:text-gray-500"
+                                    />
+                                    <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+                                    {/* Toggle password visibility icon */}
+                                    <button
+                                        type="button"
+                                        onClick={togglePasswordVisibility}
+                                        className="absolute right-3 top-1/2 -translate-y-1/2"
+                                    >
+                                        {showPassword ? <EyeIcon className="h-5 w-5 text-gray-500" /> : <EyeSlashIcon className="h-5 w-5 text-gray-500" />}
+                                    </button>
+                                </div>
+                            </div>
+                            {error && (
+                                <div className="text-red-500 text-sm flex items-center">
+                                    <ExclamationCircleIcon className="h-5 w-5 mr-2" />
+                                    {error}
+                                </div>
+                            )}
+                            <button
+                                type="submit"
+                                className="w-full text-red-300 py-2 outline outline-red-300 rounded-md font-semibold hover:bg-red-700 hover:outline-none hover:text-white transition duration-300"
+                            >
+                                Log In
+                            </button>
+                        </form>
+                        <p className="text-center text-sm text-gray-600 mt-4">
+                            Don't have an account?{' '}
+                            <Link href="/signup" className="text-red-400 hover:underline">
+                                Sign Up
+                            </Link>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {/* Mobile View */}
+            <div className="flex min-h-screen items-center justify-center md:hidden">
+                <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-2xl shadow-red-500/50">
+                    <div className="my-3">
+                        < LogoMotto />
+                    </div>
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-red-400">
@@ -77,7 +154,7 @@ export default function LoginPage() {
                             <div className="relative">
                                 <input
                                     id="password"
-                                    type={showPassword ? 'text' : 'password'} // Toggle between text and password 
+                                    type={showPassword ? 'text' : 'password'}
                                     name="password"
                                     placeholder="Enter password"
                                     required
@@ -87,14 +164,13 @@ export default function LoginPage() {
                                     className="mt-1 block w-full px-4 py-2 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-300 focus:border-transparent placeholder:text-gray-500"
                                 />
                                 <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
-                                 {/* Toggle password visibility icon */}
                                 <button
                                     type="button"
                                     onClick={togglePasswordVisibility}
                                     className="absolute right-3 top-1/2 -translate-y-1/2"
                                 >
                                     {showPassword ? <EyeIcon className="h-5 w-5 text-gray-500" /> : <EyeSlashIcon className="h-5 w-5 text-gray-500" />}
-                            </button>
+                                </button>
                             </div>
                         </div>
                         {error && (
