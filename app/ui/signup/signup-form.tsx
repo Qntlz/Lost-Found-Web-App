@@ -9,6 +9,7 @@ import { auth } from '@/firebaseConfig'; // Import Firebase auth configuration
 import { useRouter } from 'next/navigation'; // Import useRouter to redirect
 import { updateProfile } from 'firebase/auth'; // Make sure to import updateProfile
 import SuccessAccount from './successful';
+import { inter } from '../fonts';
 
 export default function SignupForm() {
     const router = useRouter(); // Initialize the router
@@ -111,9 +112,9 @@ export default function SignupForm() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center">
+        <div className={`${inter.className} min-h-screen flex items-center justify-center`}>
             <div className="w-full max-w-md p-8 bg-[url('/Background.svg')] bg-contain rounded-lg shadow-md">
-                <h2 className="text-2xl font-bold text-center text-red-400 mb-6">Create an Account</h2>
+                <h2 className={`text-2xl font-bold text-center text-red-400 mb-6`}>Create Account</h2>
                 <div className='flex items-center justify-center'>
                     <Image
                         src="/logo.svg" // Replace with your logo path
@@ -249,7 +250,7 @@ export default function SignupForm() {
 
                 </form>
 
-                <p className="mt-6 text-center text-gray-600">
+                <p className="mt-6 text-start text-gray-600">
                     Already have an account?{' '}
                     <Link href="/login" className="text-red-600 hover:underline">
                         Log In
@@ -260,4 +261,3 @@ export default function SignupForm() {
     );
 };
 
-//export default SignupForm;
