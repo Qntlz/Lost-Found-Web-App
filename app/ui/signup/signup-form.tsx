@@ -84,7 +84,11 @@ export default function SignupForm() {
                 setShowSuccess(true);
 
             } catch (error: any) {
-                setError(error.message);
+                if (error.code === 'auth/email-already-in-use') {
+                    setError('This email is already registered. Please use a different email or log in.');
+                } else {
+                    setError(error.message);
+                }
                 console.log('Error signing up:', error.message);
             }
         } else {
