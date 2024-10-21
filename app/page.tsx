@@ -19,9 +19,9 @@ export default function LandingPage () {
               <Image
                 src="/logo.svg"
                 alt="Logo"
-                width={55}
-                height={100}
-                className="object-contain"
+                width={45}
+                height={30}
+                className="object-contain py-2"
               />
             </Link>
           </div>
