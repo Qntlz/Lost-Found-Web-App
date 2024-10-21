@@ -13,6 +13,7 @@ import LogoMotto from './logoMotto';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '@/firebaseConfig';            // Make sure this is the correct path to your Firebase config
 import { useRouter } from 'next/navigation';        // Import useRouter to redirect
+import { inter } from '../fonts';
 
 export default function LoginPage() {
     const router = useRouter();                     // Initialize the router
@@ -45,7 +46,7 @@ export default function LoginPage() {
     return (
         <div className="relative">
             {/* Large Screen View */}
-            <div className="min-h-screen hidden flex-row md:flex">
+            <div className={`${inter.className} min-h-screen hidden flex-row md:flex`}>
                 {/* Left Side - Logo and Motto */}
                 < LogoMotto />
 
@@ -123,7 +124,7 @@ export default function LoginPage() {
             </div>
 
             {/* Mobile View */}
-            <div className="flex min-h-screen items-center justify-center md:hidden">
+            <div className={`${inter.className} flex min-h-screen items-center justify-center md:hidden`}>
                 <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-2xl shadow-red-500/50">
                     <div className="my-3">
                         < LogoMotto />
