@@ -5,7 +5,7 @@ export default function Announcements (){
     return (
         <div className="relative">
             <h2 className={`${inter.className} font-bold`}>Announcements</h2>
-            <div className="mt-3">
+            <div className="mt-3 mx-3">
               <div className="flex items-center">
                 <Image
                   src="/logo.svg"
