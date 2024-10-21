@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { playfairDisplay } from "../fonts";
 
 export default function LogoMotto() {
     return (
@@ -15,7 +16,7 @@ export default function LogoMotto() {
                     />
                 </Link>
             </div>
-            <h1 className="text-4xl font-bold mb-4">Lost & Found</h1>
+            <h1 className={`${playfairDisplay.className} text-4xl font-bold mb-4`}>Lost & Found</h1>
             <p className="text-lg text-center px-4">
                 "Search and Retrieve your precious items hassle-free"
             </p>
