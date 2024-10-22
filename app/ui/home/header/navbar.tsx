@@ -35,7 +35,7 @@ export default function Header() {
         </div>
 
         {/* Center: Search Bar */}
-        <div className="mt-2 md:mt-0 sm:mx-5 w-full md:w-[680px] flex justify-center order-3 md:order-2">
+        <div className="mt-3 md:mt-0 sm:mx-5 w-full md:w-[680px] flex justify-center order-3 md:order-2">
           <div className="relative w-full ">
             <input
               type="text"
