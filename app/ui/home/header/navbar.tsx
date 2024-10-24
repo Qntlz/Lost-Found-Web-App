@@ -10,7 +10,7 @@ export default function Header() {
 
   return (
     <div className="relative">
-      <header className="bg-white p-4 flex flex-col md:flex-row justify-between items-center">
+      <header className="bg-white p-4 flex flex-col md:flex-row justify-between items-center border-b-2">
         {/* Left: Logo */}
         <div className="flex items-center justify-between w-full md:w-auto">
           <div className="w-10 h-12 rounded-full flex items-center justify-center text-white text-xl">
