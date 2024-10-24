@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
-import ProtectedRoute from '../lib/ProtectedRoute';
-import LogoutButton from '../ui/home/signout';
-import { inter } from '../ui/fonts';
-import Header from '../ui/home/header/navbar';
-import Sidebar from '../ui/home/sidebar';
-import PostFeed from '../ui/home/postFeed';
-import Announcements from '../ui/announcement/announcements';
+import ProtectedRoute from '@/app/lib/ProtectedRoute';
+import LogoutButton from '@/app/ui/home/signout';
+import { inter } from '@/app/ui/fonts';
+import Header from '@/app/ui/home/header/navbar';
+import Sidebar from '@/app/ui/home/sidebar';
+import PostFeed from '@/app/ui/home/postFeed';
+import Announcements from '@/app/ui/announcement/announcements';
 
 
 export const metadata: Metadata = {

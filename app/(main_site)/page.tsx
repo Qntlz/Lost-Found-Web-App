@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
 import Image from 'next/image';
-import { inter, playfairDisplay } from './ui/fonts';
+import { inter, playfairDisplay } from '../ui/fonts';
 
 export const metadata: Metadata = {
   title: 'Lost & Found',
