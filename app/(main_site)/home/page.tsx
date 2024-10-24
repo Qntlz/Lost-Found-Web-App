@@ -1,6 +1,5 @@
 import { Metadata } from 'next';
 import ProtectedRoute from '@/app/lib/ProtectedRoute';
-import LogoutButton from '@/app/ui/home/signout';
 import { inter } from '@/app/ui/fonts';
 import Header from '@/app/ui/home/header/navbar';
 import Sidebar from '@/app/ui/home/sidebar';
@@ -38,7 +37,6 @@ export default function Homepage() {
           </div>
         </div>
       </div>
-      <LogoutButton />
     </ProtectedRoute>
   );
 }
