@@ -19,9 +19,10 @@ export default function LandingPage () {
               <Image
                 src="/logo.svg"
                 alt="Logo"
-                width={45}
-                height={30}
-                className="object-contain py-2"
+                width={0}
+                height={0}
+                style={{ width: 45, height: 'auto' }}
+                className="py-2"
               />
             </Link>
           </div>
@@ -70,9 +71,10 @@ export default function LandingPage () {
               <Image
                 src="/Centralized.svg"
                 alt="Feature 1"
-                width={300}
-                height={450}
-                className="object-contain transition-transform duration-300 ease-in-out hover:scale-110"
+                width={0}
+                height={0}
+                style={{ width: 300, height: 'auto' }}
+                className="transition-transform duration-300 ease-in-out hover:scale-110"
               />
             </div>
             <h3 className="text-xl font-bold text-gray-800 mb-2">Centralized Platform</h3>
@@ -86,9 +88,10 @@ export default function LandingPage () {
               <Image
                 src="/RealTime.svg"
                 alt="Feature 2"
-                width={300}
-                height={450}
-                className="object-contain transition-transform duration-300 ease-in-out hover:scale-110"
+                width={0}
+                height={0}
+                style={{ width: 300, height: 'auto' }}
+                className="transition-transform duration-300 ease-in-out hover:scale-110"
               />
             </div>
             <h3 className="text-xl font-bold text-gray-800 mb-2">Real-time Updates</h3>
@@ -101,9 +104,10 @@ export default function LandingPage () {
               <Image
                 src="/SimpleEfficient.svg"
                 alt="Feature 3"
-                width={300}
-                height={450}
-                className="object-contain transition-transform duration-300 ease-in-out hover:scale-110"
+                width={0}
+                height={0}
+                style={{ width: 300, height: 'auto' }}
+                className="transition-transform duration-300 ease-in-out hover:scale-110"
               />
             </div>
             <h3 className="text-xl font-bold text-gray-800 mb-2">Simple & Efficient</h3>

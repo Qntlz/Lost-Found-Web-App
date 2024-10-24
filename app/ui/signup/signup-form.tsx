@@ -119,8 +119,9 @@ export default function SignUpForm() {
                     <Image
                         src="/logo.svg" // Replace with your logo path
                         alt="Logo"
-                        width={100}
+                        width={0}
                         height={0}
+                        style={{ width: 100, height: 'auto' }}
                         className="items-center transition-transform duration-300 ease-in-out hover:scale-110"
                     />
                 </div>

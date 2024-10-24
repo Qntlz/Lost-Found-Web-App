@@ -10,8 +10,10 @@ export default function LogoMotto() {
                     <Image
                         src="/logo.svg" // Replace with your logo path
                         alt="Logo"
-                        width={190}
-                        height={200}
+                        width={0}
+                        height={0}
+                        style={{ width: 190, height: 'auto' }}
+                        priority
                         className="object-contain transition-transform duration-300 ease-in-out hover:scale-110"
                     />
                 </Link>
