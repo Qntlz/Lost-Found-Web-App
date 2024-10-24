@@ -12,17 +12,12 @@ export default function RootLayout({
 
   // Define routes where the Header should be hidden
   const hideHeaderRoutes = ["/login", "/signup","/"];
-  const title = document.title.includes ("");
-
-  console.log(title);
   
   return (
-    <html lang="en">
-      <body>
-        {/* Conditionally render Header only on routes not listed in hideHeaderRoutes */}
-        {!hideHeaderRoutes.includes(pathname) && <Header />}
-        {children}
-      </body>
-    </html>
+    <div>
+      {/* Conditionally render Header only on routes not listed in hideHeaderRoutes */}
+      {!hideHeaderRoutes.includes(pathname) && <Header />}
+      {children}
+    </div>
   );
 }
