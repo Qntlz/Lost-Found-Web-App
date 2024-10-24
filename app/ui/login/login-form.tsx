@@ -136,7 +136,7 @@ export default function LoginPage() {
                             </label>
                             <div className="relative">
                                 <input
-                                    id="email"
+                                    id="emailMobile"
                                     type="email"
                                     name="email"
                                     placeholder="Enter your email address"
@@ -154,7 +154,7 @@ export default function LoginPage() {
                             </label>
                             <div className="relative">
                                 <input
-                                    id="password"
+                                    id="passwordMobile"
                                     type={showPassword ? 'text' : 'password'}
                                     name="password"
                                     placeholder="Enter password"
