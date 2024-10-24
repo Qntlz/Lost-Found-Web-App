@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import LogoutButton from './signout';
 import { useState, useEffect, useRef } from 'react';
 
 export default function ProfileInterface() {
@@ -62,12 +63,23 @@ export default function ProfileInterface() {
       {/* Dropdown Menu */}
       {isDropdownOpen && (
         <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-20">
-          <Link href="/home/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-100" onClick={closeDropdown}>
+          <Link href="/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-100" onClick={closeDropdown}>
             Profile
           </Link>
           <Link href="/profile/settings" className="block px-4 py-2 text-gray-800 hover:bg-gray-100" onClick={closeDropdown}>
             Settings
           </Link>
+          <button className="block w-full px-4 py-2 text-gray-800 hover:bg-gray-100 text-start"
+           onClick={async () => {
+            try {
+              await LogoutButton();
+            } catch (error) {
+              console.error("Error logging out:", error);
+            }
+          }}
+          >
+            Sign Out
+          </button>
         </div>
       )}
     </div>
