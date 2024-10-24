@@ -62,10 +62,10 @@ export default function ProfileInterface() {
       {/* Dropdown Menu */}
       {isDropdownOpen && (
         <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg z-20">
-          <Link href="/profile/account" className="block px-4 py-2 text-gray-800 hover:bg-gray-100" onClick={closeDropdown}>
+          <Link href="/home/profile" className="block px-4 py-2 text-gray-800 hover:bg-gray-100" onClick={closeDropdown}>
             Profile
           </Link>
-          <Link href="/profile/security" className="block px-4 py-2 text-gray-800 hover:bg-gray-100" onClick={closeDropdown}>
+          <Link href="/profile/settings" className="block px-4 py-2 text-gray-800 hover:bg-gray-100" onClick={closeDropdown}>
             Settings
           </Link>
         </div>
