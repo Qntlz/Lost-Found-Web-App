@@ -11,7 +11,7 @@ import { updateProfile } from 'firebase/auth'; // Make sure to import updateProf
 import SuccessAccount from './successful';
 import { inter } from '../fonts';
 
-export default function SignupForm() {
+export default function SignUpForm() {
     const router = useRouter(); // Initialize the router
 
     const [formData, setFormData] = useState({
