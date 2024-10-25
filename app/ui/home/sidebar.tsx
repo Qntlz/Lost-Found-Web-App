@@ -40,27 +40,27 @@ export default function Sidebar() {
                 <Bars3Icon className="h-6 w-6 text-gray-500" />
             </button>
 
-            {/* Left Sidebar */}
+            {/* Desktop Sidebar */}
             <div className={`lg:col-span-2 m-3 rounded-lg hidden lg:block`}>
-                <button className={`ml-4 mt-5 text-red-500 px-4 py-2 rounded-lg ${inter.className} flex items-center transition duration-0 hover:duration-150 hover:scale-110`}>
+                <button className={`ml-4 mt-5 text-red-500 py-2 rounded-lg ${inter.className} flex items-center transition duration-0 hover:duration-150 hover:scale-110`}>
                     <PencilSquareIcon className="h-6 w-6 mr-2" />
                     New Post
                 </button>
                 {/* Announcement Feature for Adminds Only */}
-                {/* <button className={`ml-4  text-red-500 px-4 py-2 rounded-lg sm:text-left ${inter.className} flex items-center transition duration-0 hover:duration-150 hover:scale-110`}>
+                {/* <button className={`ml-4  text-red-500 py-2 rounded-lg sm:text-left ${inter.className} flex items-center transition duration-0 hover:duration-150 hover:scale-110`}>
                     <MegaphoneIcon className="h-6 w-6 mr-2 -rotate-[20deg]" />
                     New Announcement
                 </button> */}
-                <button className={`ml-4 text-red-500 px-4 py-2 rounded-lg ${inter.className} flex items-center transition duration-0 hover:duration-150 hover:scale-110`}>
+                <button className={`ml-4 text-red-500 py-2 rounded-lg ${inter.className} flex items-center transition duration-0 hover:duration-150 hover:scale-110`}>
                     <ChatBubbleLeftRightIcon className="h-6 w-6 mr-2" />
                     Chats
                 </button>
                 {/* Add Division */}
-                <button className={`ml-4 text-red-500 px-4 py-2 rounded-lg ${inter.className} flex items-center transition duration-0 hover:duration-150 hover:scale-110`}>
+                <button className={`ml-4 text-red-500 py-2 rounded-lg ${inter.className} flex items-center transition duration-0 hover:duration-150 hover:scale-110`}>
                     <NewspaperIcon className="h-6 w-6 mr-2" />
                     My Post
                 </button>
-                <button className={`ml-4 text-red-500 px-4 py-2 rounded-lg ${inter.className} flex items-center transition duration-0 hover:duration-150 hover:scale-110`}>
+                <button className={`ml-4 text-red-500 py-2 rounded-lg ${inter.className} flex items-center transition duration-0 hover:duration-150 hover:scale-110`}>
                     <ArchiveBoxArrowDownIcon className="h-6 w-6 mr-2" />
                     Archives
                 </button>
