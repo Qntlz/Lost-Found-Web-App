@@ -21,6 +21,7 @@ export default function Header() {
                 width={100}
                 height={100}
                 className="object-contain transition-transform duration-300 ease-in-out hover:scale-110"
+                priority
               />
             </Link>
           </div>
