@@ -2,14 +2,14 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import LogoutButton from './signout';
+import SignOutButton from './signout';
 import { useState, useEffect, useRef } from 'react';
 
 export default function ProfileInterface() {
   // Mock user data, replace with actual user data
   const [avatarUrl, setAvatarUrl] = useState("/logo.svg"); // Default avatar
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  
+
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const toggleDropdown = () => {
@@ -56,6 +56,7 @@ export default function ProfileInterface() {
             width={40}
             height={40}
             className="object-cover"
+            priority
           />
         </div>
       </div>
@@ -69,17 +70,7 @@ export default function ProfileInterface() {
           <Link href="/profile/settings" className="block px-4 py-2 text-gray-800 hover:bg-gray-100" onClick={closeDropdown}>
             Settings
           </Link>
-          <button className="block w-full px-4 py-2 text-gray-800 hover:bg-gray-100 text-start"
-           onClick={async () => {
-            try {
-              await LogoutButton();
-            } catch (error) {
-              console.error("Error logging out:", error);
-            }
-          }}
-          >
-            Sign Out
-          </button>
+          < SignOutButton />
         </div>
       )}
     </div>
