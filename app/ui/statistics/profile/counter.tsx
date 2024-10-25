@@ -33,7 +33,7 @@ export default function DataCounter({ count, title }: { count: number, title: st
   }, [increment]);
 
   return (
-    <div className="flex flex-col items-center justify-center text-center m-4 flex-wrap text-xl font-semibold transition ease-in delay-50 hover:-translate-y-1 hover:scale-110 duration-300">
+    <div className="flex flex-col items-center justify-center text-center my-3 flex-wrap text-lg font-semibold transition ease-in delay-50 hover:-translate-y-1 hover:scale-110 duration-300">
       <span className={clsx(
         {
           'text-blue-500' : `${title}` === 'Total Post',
@@ -43,7 +43,7 @@ export default function DataCounter({ count, title }: { count: number, title: st
           
         }
       )}>{number}</span>
-      <p className="text-xl font-medium text-black">{title}</p>
+      <p className="text-base font-medium text-black">{title}</p>
     </div>
   );
 }
