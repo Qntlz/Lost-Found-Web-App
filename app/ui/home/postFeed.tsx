@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import {
-  ArrowTrendingUpIcon,
+  ArrowTrendingUpIcon, PlusIcon
 } from '@heroicons/react/24/outline';
 
 
@@ -15,15 +15,25 @@ export default function PostFeed() {
   // Set the title based on the current pathname
   const title = pathname.includes("home") ? "Home" : "Posts";
   // Conditionally apply padding based on whether the pathname includes 'home'
-  const paddingClass = pathname.includes('home') ? 'px-2' : 'p-4';
+  const paddingClass = pathname.includes('home') ? 'px-2' : 'py-5';
 
   return (
     <div className="relative">
       <div className="bg-white px-4 rounded-lg mb-4">
 
         {/* Title Header */}
-        <div className={`${paddingClass}`}>
-          <span className="font-semibold text-2xl text-red-500">{title}</span>
+        <div className={`${paddingClass} flex justify-between`}>
+          <div className="flex">
+            <span className="font-semibold text-2xl text-red-500">{title}</span>
+          </div>
+
+          <div className="flex p-1 rounded-md border border-red-500 justify-center text-red-500">
+            <div className="flex justify-center">
+              <button className="flex font-normal text-sm text-nowrap items-center">
+                < PlusIcon className="mx-1 w-5" />
+                Add Post</button>
+            </div>
+          </div>
         </div>
 
         <div className="flex flex-col lg:flex-row items-start space-x-0 lg:space-x-4">
