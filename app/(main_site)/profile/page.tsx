@@ -190,7 +190,7 @@ export default function Profile() {
                                         >
                                             <option value="">Select School</option>
                                             <option value="SBE">SBE</option>
-                                            <option value="Other">SOE</option>
+                                            <option value="SOE">SOE</option>
                                             <option value="SAS">SAS</option>
                                             <option value="SAFAD">SAFAD</option>
                                             <option value="SLG">SLG</option>
@@ -208,9 +208,9 @@ export default function Profile() {
                                         >
                                             <option value="">Select Course</option>
                                             <option value="BSCS">BSCS</option>
-                                            <option value="Other">BSIT</option>
+                                            <option value="BSIT">BSIT</option>
                                             <option value="BSCS">BSIS</option>
-                                            <option value="Other">BSCPE</option>
+                                            <option value="BSCPE">BSCPE</option>
                                         </select>
                                     </li>
                                     <li>
