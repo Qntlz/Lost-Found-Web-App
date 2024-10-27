@@ -24,3 +24,148 @@
 }
 
 
+.animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1; /* Places background behind content */
+}
+
+/* Apply your gradient background to another container */
+.background-gradient {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Places the gradient layer behind everything */
+    background: linear-gradient(to top right, white -10%, #fee2e2 50%, white 100%);
+
+}
+
+.icon {
+    position: absolute;
+    width: 70px; /* Adjust icon size */
+    height: 70px;
+    background-size: cover;
+}
+
+/* Bottle */
+.icon1 {
+    top: 15%;
+    left: 8%;
+    background-image: url('/1.svg');
+    animation: drift1 6s ease-in-out infinite alternate;
+    @media screen and (min-width: 768px) and (max-width: 820px) {
+        top: 23%;
+        left: 6%;   
+    }
+}
+
+/* Wallet */
+.icon2 {                        
+    top: 14%;
+    right: 10%;
+    background-image: url('/2.svg');
+    animation: drift2 6s ease-in-out infinite alternate;
+    @media screen and (min-width: 768px) and (max-width: 820px) {
+       top: 23%;
+    }
+}
+
+/* Keys */
+.icon3 {
+    top: 42%;
+    left: 9%;
+    background-image: url('/3.svg');
+    animation: drift3 6s ease-in-out infinite alternate;
+    @media screen and (min-width: 768px) and (max-width: 820px) {
+        top: 46%;
+        left: 24%;
+    }
+}
+
+/* Glasses */
+.icon4 {
+    bottom: 53%;
+    right: 10%;
+    background-image: url('/4.svg');
+    animation: drift4 6s ease-in-out infinite alternate;
+    @media screen and (min-width: 768px) and (max-width: 820px) {
+        bottom: 45%;
+        right: 27%;
+    }
+}
+/* Earbuds */
+.icon5 {
+    bottom: 20%;
+    right: 10%;
+    background-image: url('/5.svg');
+    animation: drift 6s ease-in-out infinite alternate;
+    @media screen and (min-width: 768px) and (max-width: 820px) {
+        display: none;
+    }
+}
+
+/* ID */
+.icon6 {
+    bottom: 20%;
+    left: 10%;
+    background-image: url('/6.svg');
+    animation: drift 6s ease-in-out infinite alternate;
+    @media screen and (min-width: 768px) and (max-width: 820px) {
+        display: none;
+    }
+}
+
+/* /* Keyframe animation for drifting effect */
+@keyframes drift {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+    to {
+        transform: translate(0px, 20px) scale(1.1);
+    }
+}
+
+@keyframes drift1 {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+    to {
+        transform: translate(20px, 10px) scale(1.1);
+    }
+}
+
+@keyframes drift2 {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+    to {
+        transform: translate(-30px, 20px) scale(1.1);
+    }
+}
+
+@keyframes drift3 {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+    to {
+        transform: translate(-45px, 20px) scale(1.1);
+    }
+}
+
+@keyframes drift4 {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+    to {
+        transform: translate(40px, 20px) scale(1.1);
+    }
+} 
+
+
+
