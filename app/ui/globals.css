@@ -59,10 +59,6 @@
     left: 8%;
     background-image: url('/1.svg');
     animation: drift1 6s ease-in-out infinite alternate;
-    @media screen and (min-width: 768px) and (max-width: 820px) {
-        top: 23%;
-        left: 6%;   
-    }
 }
 
 /* Wallet */
@@ -71,9 +67,6 @@
     right: 10%;
     background-image: url('/2.svg');
     animation: drift2 6s ease-in-out infinite alternate;
-    @media screen and (min-width: 768px) and (max-width: 820px) {
-       top: 23%;
-    }
 }
 
 /* Keys */
@@ -82,32 +75,22 @@
     left: 9%;
     background-image: url('/3.svg');
     animation: drift3 6s ease-in-out infinite alternate;
-    @media screen and (min-width: 768px) and (max-width: 820px) {
-        top: 46%;
-        left: 24%;
-    }
 }
 
 /* Glasses */
 .icon4 {
-    bottom: 53%;
-    right: 10%;
+    bottom: 52%;
+    right: 11%  ;
     background-image: url('/4.svg');
     animation: drift4 6s ease-in-out infinite alternate;
-    @media screen and (min-width: 768px) and (max-width: 820px) {
-        bottom: 45%;
-        right: 27%;
-    }
 }
+
 /* Earbuds */
 .icon5 {
-    bottom: 20%;
+    bottom: 21%;
     right: 10%;
     background-image: url('/5.svg');
     animation: drift 6s ease-in-out infinite alternate;
-    @media screen and (min-width: 768px) and (max-width: 820px) {
-        display: none;
-    }
 }
 
 /* ID */
@@ -116,10 +99,46 @@
     left: 10%;
     background-image: url('/6.svg');
     animation: drift 6s ease-in-out infinite alternate;
-    @media screen and (min-width: 768px) and (max-width: 820px) {
+    
+}
+/* Media query for 768px to 819px screens */
+@media screen and (min-width: 768px) and (max-width: 819px) {
+    .icon1 {
+        top: 23%;
+        left: 6%;   
+    }
+    .icon2 {
+        top: 23%;
+    }
+
+    .icon3 {
+        top: 50%;
+        left: 24%; 
+    }
+    .icon4{
+        bottom: 45%;
+        right: 27%;
+    }
+    .icon5 {
+        display: none;
+    }
+    .icon6 {
         display: none;
     }
 }
+
+/* Media query for 912px to 1024px screens */
+@media screen and (min-width: 912px) and (max-width: 1024px) {
+    .icon3 {
+        top: 37%;
+        left: 22%;
+    }
+    .icon4 {
+        bottom: 55%;
+        right: 15%;
+    }
+}
+
 
 /* /* Keyframe animation for drifting effect */
 @keyframes drift {
