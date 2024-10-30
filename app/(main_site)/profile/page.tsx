@@ -209,7 +209,7 @@ export default function Profile() {
                                             <option value="">Select Course</option>
                                             <option value="BSCS">BSCS</option>
                                             <option value="BSIT">BSIT</option>
-                                            <option value="BSCS">BSIS</option>
+                                            <option value="BSIS">BSIS</option>
                                             <option value="BSCPE">BSCPE</option>
                                         </select>
                                     </li>
