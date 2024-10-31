@@ -54,7 +54,7 @@ export default function LoginPage() {
                 <form onSubmit={handleSubmit} className="space-y-4">
                     {/* Email */}
                     <div>
-                        <label htmlFor="email" className="block text-sm md:text-lg font-medium text-red-400">
+                        <label htmlFor="email" className="block text-sm md:text-lg font-medium text-red-500">
                             Email
                         </label>
                         <div className="relative">
@@ -65,6 +65,7 @@ export default function LoginPage() {
                                 placeholder="Enter your email address"
                                 required
                                 value={email}
+                                autoComplete='Yes'
                                 onChange={(e) => setEmail(e.target.value)}
                                 className="mt-1 block w-full px-4 py-2 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-300 focus:border-transparent placeholder:text-gray-500"
                             />
@@ -73,7 +74,7 @@ export default function LoginPage() {
                     </div>
                     {/* Password */}
                     <div>
-                        <label htmlFor="password" className="block text-sm md:text-lg font-medium text-red-400">
+                        <label htmlFor="password" className="block text-sm md:text-lg font-medium text-red-500">
                             Password
                         </label>
                         <div className="relative">
@@ -94,7 +95,7 @@ export default function LoginPage() {
                                 onClick={togglePasswordVisibility}
                                 className="absolute right-3 top-1/2 -translate-y-1/2"
                             >
-                                {showPassword ? <EyeIcon className="h-5 w-5 text-gray-500" /> : <EyeSlashIcon className="h-5 w-5 text-gray-500" />}
+                                {showPassword ? <EyeIcon className="h-5 w-5 text-red-500" /> : <EyeSlashIcon className="h-5 w-5 text-red-500" />}
                             </button>
                         </div>
                     </div>
@@ -106,14 +107,14 @@ export default function LoginPage() {
                     )}
                     <button
                         type="submit"
-                        className="w-full py-2 font-semibold text-red-300 outline outline-red-300 rounded-md hover:bg-red-700 hover:outline-none hover:text-white transition duration-300"
+                        className="w-full py-2 font-semibold text-red-500 border border-gray-300 rounded-md hover:bg-red-700 hover:outline-none hover:text-white transition duration-300"
                     >
                         Log In
                     </button>
                 </form>
                 <p className="text-center text-sm text-gray-600 mt-4">
                     Don't have an account?{' '}
-                    <Link href="/signup" className="text-red-400 hover:underline">
+                    <Link href="/signup" className="text-red-600 hover:underline">
                         Sign Up
                     </Link>
                 </p>
@@ -127,7 +128,7 @@ export default function LoginPage() {
                 <form onSubmit={handleSubmit} className="space-y-8">
                     {/* Email */}
                     <div className="mx-48">
-                        <label htmlFor="email" className="block text-xl font-medium text-red-400">
+                        <label htmlFor="email" className="block text-xl font-medium text-red-500">
                             Email
                         </label>
                         <div className="relative">
@@ -138,6 +139,7 @@ export default function LoginPage() {
                                 placeholder="Enter your email address"
                                 required
                                 value={email}
+                                autoComplete='Yes'
                                 onChange={(e) => setEmail(e.target.value)}
                                 className="mt-1 block w-full px-4 py-2 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-300 focus:border-transparent placeholder:text-gray-500"
                             />
@@ -146,7 +148,7 @@ export default function LoginPage() {
                     </div>
                     {/* Password */}
                     <div className="mx-48">
-                        <label htmlFor="password" className="block text-xl font-medium text-red-400">
+                        <label htmlFor="password" className="block text-xl font-medium text-red-500">
                             Password
                         </label>
                         <div className="relative">
@@ -167,7 +169,7 @@ export default function LoginPage() {
                                 onClick={togglePasswordVisibility}
                                 className="absolute right-3 top-1/2 -translate-y-1/2"
                             >
-                                {showPassword ? <EyeIcon className="h-5 w-5 text-gray-500" /> : <EyeSlashIcon className="h-5 w-5 text-gray-500" />}
+                                {showPassword ? <EyeIcon className="h-5 w-5 text-red-500" /> : <EyeSlashIcon className="h-5 w-5 text-red-500" />}
                             </button>
                         </div>
                     </div>
@@ -180,7 +182,7 @@ export default function LoginPage() {
                     <div className="mx-48">
                         <button
                             type="submit"
-                            className="w-full mt-3 py-2 text-xl font-semibold text-red-300 outline outline-red-300 rounded-md hover:bg-red-700 hover:outline-none hover:text-white transition duration-300"
+                            className="w-full mt-3 py-2 text-xl font-semibold text-red-500 border border-gray-300 rounded-md hover:bg-red-700 hover:outline-none hover:text-white transition duration-300"
                         >
                             Log In
                         </button>
@@ -188,7 +190,7 @@ export default function LoginPage() {
                 </form>
                 <p className="text-lg text-center  text-gray-600 mt-4">
                     Don't have an account?{' '}
-                    <Link href="/signup" className="text-red-400 hover:underline">
+                    <Link href="/signup" className="text-red-600 hover:underline">
                         Sign Up
                     </Link>
                 </p>
@@ -199,15 +201,27 @@ export default function LoginPage() {
                 {/* Left Side - Logo and Motto */}
                 <div className="flex basis-[35%] xl:basis-[39%] justify-center items-center">
                     < LogoMotto />
+                    {/* Aesthetics */}
+                    <div className="animated-bg hidden md:block">
+                        {/* Phone */}
+                        <div className="icon bg-[url('/4.svg')] bottom-[10%] left-[5%] -rotate-[35deg] opacity-70"></div>
+                        {/* Keys */}
+                        <div className="icon bg-[url('/3.svg')] top-[14%] left-[25%] opacity-70 xl:left-[30%]"></div>
+                        {/* Earbuds */}
+                        <div className="icon bg-[url('/5.svg')] top-[10%] left-[5%] rotate-[20deg] opacity-70"></div>
+                         {/* ID */}
+                         <div className="icon bg-[url('/6.svg')] bottom-[10%] left-[25%] rotate-[20deg] opacity-70"></div>
+                    </div>
                 </div>
 
                 {/* Right Side - Login Form */}
                 <div className="flex grow items-center justify-center bg-red-400 p-4 md:p-0">
                     <div className="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
-                        <h2 className="text-4xl font-semibold text-center text-red-400 mb-6">Login</h2>
+                        <h2 className="mb-6 text-4xl font-semibold text-center text-red-500">Login</h2>
                         <form onSubmit={handleSubmit} className="space-y-6">
+                            {/* Email */}
                             <div>
-                                <label htmlFor="email" className="block text-sm font-medium text-red-400">
+                                <label htmlFor="email" className="block text-sm font-medium text-red-500">
                                     Email
                                 </label>
                                 <div className="relative">
@@ -218,14 +232,16 @@ export default function LoginPage() {
                                         placeholder="Enter your email address"
                                         required
                                         value={email}
+                                        autoComplete='Yes'
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="mt-1 block w-full px-4 py-2 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-300 focus:border-transparent placeholder:text-gray-500"
+                                        className="mt-1 block w-full px-4 py-2 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent placeholder:text-gray-500"
                                     />
                                     <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
                                 </div>
                             </div>
+                            {/* Password */}
                             <div>
-                                <label htmlFor="password" className="block text-sm font-medium text-red-400">
+                                <label htmlFor="password" className="block text-sm font-medium text-red-500">
                                     Password
                                 </label>
                                 <div className="relative">
@@ -238,7 +254,7 @@ export default function LoginPage() {
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         minLength={8}
-                                        className="mt-1 block w-full px-4 py-2 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-300 focus:border-transparent placeholder:text-gray-500"
+                                        className="mt-1 block w-full px-4 py-2 pl-10 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent placeholder:text-gray-500"
                                     />
                                     <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
                                     {/* Toggle password visibility icon */}
@@ -247,7 +263,7 @@ export default function LoginPage() {
                                         onClick={togglePasswordVisibility}
                                         className="absolute right-3 top-1/2 -translate-y-1/2"
                                     >
-                                        {showPassword ? <EyeIcon className="h-5 w-5 text-gray-500" /> : <EyeSlashIcon className="h-5 w-5 text-gray-500" />}
+                                        {showPassword ? <EyeIcon className="h-5 w-5 text-red-500" /> : <EyeSlashIcon className="h-5 w-5 text-red-500" />}
                                     </button>
                                 </div>
                             </div>
@@ -259,14 +275,14 @@ export default function LoginPage() {
                             )}
                             <button
                                 type="submit"
-                                className="w-full text-red-300 py-2 outline outline-red-300 rounded-md font-semibold hover:bg-red-700 hover:outline-none hover:text-white transition duration-300"
+                                className="w-full py-2 font-semibold text-red-500 border border-gray-300 rounded-md hover:bg-red-700 hover:outline-none hover:text-white transition duration-300"
                             >
                                 Log In
                             </button>
                         </form>
                         <p className="text-center text-sm text-gray-600 mt-4">
                             Don't have an account?{' '}
-                            <Link href="/signup" className="text-red-400 hover:underline">
+                            <Link href="/signup" className="text-red-600 hover:underline">
                                 Sign Up
                             </Link>
                         </p>
