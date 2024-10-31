@@ -16,7 +16,7 @@ export default function Announcements (){
                 />
                 <div>
                   <h3 className="font-bold text-lg">Carl Omega</h3>
-                  <p className="text-xs text-gray-400">Racist Department Admin</p>
+                  <p className="text-xs text-gray-400">Omega Department Admin</p>
                 </div>
               </div>
               <p className="mt-4 text-sm text-justify break-all">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda labore, dolores voluptatum rerum non officia, saepe at placeat natus, vel eos voluptates commodi unde cupiditate! Obcaecati placeat quod eos natus!</p>
