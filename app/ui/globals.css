@@ -23,7 +23,6 @@
     background: #555;
 }
 
-
 .animated-bg {
     position: fixed;
     top: 0;
@@ -53,138 +52,7 @@
     background-size: cover;
 }
 
-/* Bottle */
-.icon1 {
-    top: 15%;
-    left: 8%;
-    background-image: url('/1.svg');
-    animation: drift1 6s ease-in-out infinite alternate;
-}
 
-/* Wallet */
-.icon2 {                        
-    top: 14%;
-    right: 10%;
-    background-image: url('/2.svg');
-    animation: drift2 6s ease-in-out infinite alternate;
-}
-
-/* Keys */
-.icon3 {
-    top: 42%;
-    left: 9%;
-    background-image: url('/3.svg');
-    animation: drift3 6s ease-in-out infinite alternate;
-}
-
-/* Glasses */
-.icon4 {
-    bottom: 52%;
-    right: 11%  ;
-    background-image: url('/4.svg');
-    animation: drift4 6s ease-in-out infinite alternate;
-}
-
-/* Earbuds */
-.icon5 {
-    bottom: 21%;
-    right: 10%;
-    background-image: url('/5.svg');
-    animation: drift 6s ease-in-out infinite alternate;
-}
-
-/* ID */
-.icon6 {
-    bottom: 20%;
-    left: 10%;
-    background-image: url('/6.svg');
-    animation: drift 6s ease-in-out infinite alternate;
-    
-}
-/* Media query for 768px to 819px screens */
-@media screen and (min-width: 768px) and (max-width: 819px) {
-    .icon1 {
-        top: 23%;
-        left: 6%;   
-    }
-    .icon2 {
-        top: 23%;
-    }
-
-    .icon3 {
-        top: 50%;
-        left: 24%; 
-    }
-    .icon4{
-        bottom: 45%;
-        right: 27%;
-    }
-    .icon5 {
-        display: none;
-    }
-    .icon6 {
-        display: none;
-    }
-}
-
-/* Media query for 912px to 1024px screens */
-@media screen and (min-width: 912px) and (max-width: 1024px) {
-    .icon3 {
-        top: 37%;
-        left: 22%;
-    }
-    .icon4 {
-        bottom: 55%;
-        right: 15%;
-    }
-}
-
-
-/* /* Keyframe animation for drifting effect */
-@keyframes drift {
-    from {
-        transform: translate(0, 0) scale(1);
-    }
-    to {
-        transform: translate(0px, 20px) scale(1.1);
-    }
-}
-
-@keyframes drift1 {
-    from {
-        transform: translate(0, 0) scale(1);
-    }
-    to {
-        transform: translate(20px, 10px) scale(1.1);
-    }
-}
-
-@keyframes drift2 {
-    from {
-        transform: translate(0, 0) scale(1);
-    }
-    to {
-        transform: translate(-30px, 20px) scale(1.1);
-    }
-}
-
-@keyframes drift3 {
-    from {
-        transform: translate(0, 0) scale(1);
-    }
-    to {
-        transform: translate(-45px, 20px) scale(1.1);
-    }
-}
-
-@keyframes drift4 {
-    from {
-        transform: translate(0, 0) scale(1);
-    }
-    to {
-        transform: translate(40px, 20px) scale(1.1);
-    }
-} 
 
 
 
