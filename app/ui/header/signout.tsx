@@ -16,11 +16,12 @@ export default function SignOutButton() {
     };
 
     return (
-        <button
-            className="block w-full px-4 py-2 text-gray-800 hover:bg-gray-100 text-start"
-            onClick={handleSignOut}
-        >
-            Sign Out
-        </button>
+        <div className="relative">
+            <button
+                onClick={handleSignOut}
+            >
+                Sign Out
+            </button>
+        </div>
     );
 }
