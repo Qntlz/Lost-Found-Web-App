@@ -20,7 +20,7 @@ export default function PostFeed() {
   return (
     <div className="relative">
 
-      <div className="bg-white mx-7 rounded-lg mb-4">
+      <div className="bg-white mx-7 rounded-lg mb-6">
 
         {/* Post Section */}
         <div className="flex flex-col lg:flex-row items-start space-x-0 lg:space-x-4">
@@ -59,7 +59,7 @@ export default function PostFeed() {
         </div>
 
         {/* Post Reactions */}
-        <div className="mt-4 flex font-light md:flex-col lg:flex-row justify-end md:justify-between items-start lg:items-center ">
+        <div className="mt-4 flex font-light md:flex-row justify-end items-start lg:items-center ">
           <div className="text-gray-500 flex items-center mb-2 lg:mb-0">
             <span className="mr-2">100 views</span>
           </div>
@@ -69,7 +69,7 @@ export default function PostFeed() {
         </div>
       </div>
 
-      <div className="bg-white mx-7 rounded-lg mb-4">
+      <div className="bg-white mx-7 rounded-lg mb-6">
 
         {/* Post Section */}
         <div className="flex flex-col lg:flex-row items-start space-x-0 lg:space-x-4">
@@ -108,7 +108,7 @@ export default function PostFeed() {
         </div>
 
         {/* Post Reactions */}
-        <div className="mt-4 flex font-light md:flex-col lg:flex-row justify-end md:justify-between items-start lg:items-center ">
+        <div className="mt-4 flex font-light md:flex-row justify-end items-start lg:items-center ">
           <div className="text-gray-500 flex items-center mb-2 lg:mb-0">
             <span className="mr-2">100 views</span>
           </div>
@@ -118,7 +118,7 @@ export default function PostFeed() {
         </div>
       </div>
 
-      <div className="bg-white mx-7 rounded-lg mb-4">
+      <div className="bg-white mx-7 rounded-lg mb-6">
 
         {/* Post Section */}
         <div className="flex flex-col lg:flex-row items-start space-x-0 lg:space-x-4">
@@ -157,7 +157,7 @@ export default function PostFeed() {
         </div>
 
         {/* Post Reactions */}
-        <div className="mt-4 flex font-light md:flex-col lg:flex-row justify-end md:justify-between items-start lg:items-center ">
+        <div className="mt-4 flex font-light md:flex-row justify-end items-start lg:items-center ">
           <div className="text-gray-500 flex items-center mb-2 lg:mb-0">
             <span className="mr-2">100 views</span>
           </div>
@@ -167,7 +167,7 @@ export default function PostFeed() {
         </div>
       </div>
 
-      <div className="bg-white mx-7 rounded-lg mb-4">
+      <div className="bg-white mx-7 rounded-lg mb-6">
 
         {/* Post Section */}
         <div className="flex flex-col lg:flex-row items-start space-x-0 lg:space-x-4">
@@ -206,7 +206,7 @@ export default function PostFeed() {
         </div>
 
         {/* Post Reactions */}
-        <div className="mt-4 flex font-light md:flex-col lg:flex-row justify-end md:justify-between items-start lg:items-center ">
+        <div className="mt-4 flex font-light md:flex-row justify-end items-start lg:items-center ">
           <div className="text-gray-500 flex items-center mb-2 lg:mb-0">
             <span className="mr-2">100 views</span>
           </div>
@@ -216,7 +216,7 @@ export default function PostFeed() {
         </div>
       </div>
 
-      <div className="bg-white mx-7 rounded-lg mb-4">
+      <div className="bg-white mx-7 rounded-lg mb-6">
 
         {/* Post Section */}
         <div className="flex flex-col lg:flex-row items-start space-x-0 lg:space-x-4">
@@ -255,7 +255,7 @@ export default function PostFeed() {
         </div>
 
         {/* Post Reactions */}
-        <div className="mt-4 flex font-light md:flex-col lg:flex-row justify-end md:justify-between items-start lg:items-center ">
+        <div className="mt-4 flex font-light md:flex-row justify-end items-start lg:items-center ">
           <div className="text-gray-500 flex items-center mb-2 lg:mb-0">
             <span className="mr-2">100 views</span>
           </div>
