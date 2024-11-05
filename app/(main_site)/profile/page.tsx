@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { inter } from "@/app/ui/fonts";
 import { auth, db } from '@/firebaseConfig';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import PostFeed from "@/app/ui/home/postFeed";
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import MyStats from "@/app/ui/statistics/profile/myStatistics";
@@ -12,6 +12,7 @@ import { CameraIcon, PencilSquareIcon, PlusIcon } from "@heroicons/react/24/outl
 
 
 export default function Profile() {
+    const inputRef = useRef<HTMLInputElement | null>(null);
     const [name, setName] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [isEditing, setIsEditing] = useState(false); // To toggle edit mode
@@ -69,6 +70,12 @@ export default function Profile() {
         setIsEditing(false);
     };
 
+    useEffect(() => {
+        if (isEditing) {
+            inputRef.current?.focus(); // Focus the input when editing is enabled
+        }
+    }, [isEditing]); // Run this effect whenever isEditing changes
+
     // Save profile changes
     const handleSaveChanges = async () => {
         if (currentUser) {
@@ -95,172 +102,16 @@ export default function Profile() {
     };
 
     return (
-        <div className={`${inter.className} relative`}>
+        <div className={`${inter.className} mt-20 grid grid-rows divide-y-2 md:divide-y-0 md:divide-x-2 md:grid-cols-5`}>
 
-            {/* Desktop View */}
-            <div className="hidden md:flex flex-row gap-2 divide-x-2">
-                {/* Profile Section */}
-                <div className="basis-[20%] mb-5 mx-4 pl-3">
-                    <div className="p-5 mb-2">
+            {/* Profile Section */}
+            <div className="mb-8 md:col-span-2 md:fixed md:top-[90px]">
+                {/* Profile Picture */}
+                <div>
+                    <div className="mx-7 mt-3">
                         <span className="font-semibold text-2xl text-red-500">Profile Details</span>
                     </div>
-
-                    {/* Profile Picture */}
-                    <div className="w-40 relative flex items-center justify-center mx-8 mt-6 overflow-hidden">
-                        <Image
-                            src={'/logo.svg'}
-                            alt="User Avatar"
-                            width={250}
-                            height={0}
-                            className="rounded-full border-2 border-gray-300 object-contain p-1"
-                            priority
-                        />
-                        <button className="absolute bottom-2 right-2 bg-white rounded-full p-1 border-1 border-white z-10">
-                            <CameraIcon className="w-6 text-black" />
-                        </button>
-                    </div>
-
-                    {/* Information Container */}
-                    <div className="flex flex-col justify-start my-3">
-                        <div className="px-4">
-                            {isEditing ? (
-                                <input
-                                    type="text"
-                                    value={tempName}
-                                    onChange={(e) => setTempName(e.target.value)}
-                                    className="border p-2 rounded-md w-full"
-                                />
-                            ) : (
-                                <span className="font-semibold text-2xl text-pretty">{name}</span>
-                            )}
-                        </div>
-                        <div className="px-4">
-                            <span className="font-light text-xl">{email}</span>
-                        </div>
-                    </div>
-
-                    {isEditing ? (
-                        <div className="flex gap-2 px-4">
-                            <button
-                                onClick={handleSaveChanges}
-                                className="p-2 bg-green-500 text-white rounded-md hover:bg-green-400"
-                            >
-                                Save
-                            </button>
-                            <button
-                                onClick={handleCancelEdit}
-                                className="p-2 bg-red-500 text-white rounded-md hover:bg-red-400"
-                            >
-                                Cancel
-                            </button>
-                        </div>
-                    ) : (
-                        <div className="flex w-full px-4">
-                            <button
-                                onClick={handleEditProfile}
-                                className="flex w-full p-1 rounded-md justify-center bg-red-500 text-white hover:bg-red-400"
-                            >
-                                <PencilSquareIcon className="mx-1 w-5" />
-                                Edit Profile
-                            </button>
-                        </div>
-                    )}
-                </div>
-
-                {/* Post Section */}
-                <div className="basis-[50%]">
-                    <div className={`${inter.className}`}>
-                        <PostFeed />
-                    </div>
-                </div>
-
-                {/* Biography Section */}
-                <div className="flex-1 flex-col divide-y-2 px-4">
-                    <div className="flex">
-                        <div className="w-full py-5">
-                            <h3 className="text-2xl font-semibold mb-3 text-red-500">Bio</h3>
-                            {isEditing ? (
-                                <ul className="list-none space-y-3">
-                                    <li>
-                                        <label>School:</label>
-                                        <select
-                                            value={school}
-                                            onChange={(e) => setSchool(e.target.value)}
-                                            className="border p-2 rounded-md w-full"
-                                        >
-                                            <option value="">Select School</option>
-                                            <option value="SBE">SBE</option>
-                                            <option value="SOE">SOE</option>
-                                            <option value="SAS">SAS</option>
-                                            <option value="SAFAD">SAFAD</option>
-                                            <option value="SLG">SLG</option>
-                                            <option value="SHCP">SHCP</option>
-                                            <option value="SAS">SAS</option>
-                                            <option value="SED">SED</option>
-                                        </select>
-                                    </li>
-                                    <li>
-                                        <label>Course:</label>
-                                        <select
-                                            value={course}
-                                            onChange={(e) => setCourse(e.target.value)}
-                                            className="border p-2 rounded-md w-full"
-                                        >
-                                            <option value="">Select Course</option>
-                                            <option value="BSCS">BSCS</option>
-                                            <option value="BSIT">BSIT</option>
-                                            <option value="BSIS">BSIS</option>
-                                            <option value="BSCPE">BSCPE</option>
-                                        </select>
-                                    </li>
-                                    <li>
-                                        <label>Year Level:</label>
-                                        <select
-                                            value={yearLevel}
-                                            onChange={(e) => setYearLevel(e.target.value)}
-                                            className="border p-2 rounded-md w-full"
-                                        >
-                                            <option value="">Select Year Level</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                        </select>
-                                    </li>
-                                </ul>
-                            ) : (
-                                <ul className="list-none">
-                                    <li>School: {school || ""}</li>
-                                    <li>Course: {course || ""}</li>
-                                    <li>Year Level: {yearLevel || ""}</li>
-                                </ul>
-                            )}
-                        </div>
-                    </div>
-
-                    {/* Statistics */}
-                    <div className="flex flex-col">
-                        <div className="flex w-full py-5">
-                            <h3 className="text-2xl font-semibold mb-3 text-red-500">Statistics</h3>
-                        </div>
-                        <div className="">
-                            < MyStats />
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            {/* Mobile View */}
-            <div className="md:hidden flex flex-col divide-y-2">
-
-                <div className="mb-5">
-                    <div className="flex mx-7 mb-7 mt-3">
-                        <span className="font-semibold text-2xl text-red-500">Profile Details</span>
-                    </div>
-
-                    {/* Profile Picture */}
-                    <div className="flex justify-start mx-8">
+                    <div className="mt-8 mx-8">
                         <Image
                             src={'/logo.svg'}
                             alt="User Avatar"
@@ -268,57 +119,76 @@ export default function Profile() {
                             height={0}
                             className="p-2 rounded-full outline outline-2 outline-gray-500 outline-offset-4"
                         />
-                        <div className="flex justify-center items-end">
-                            <button className="w-6">
-                                < CameraIcon className="rounded-full outline outline-2 outline-gray-500 outline-offset-4" />
-                            </button>
-                        </div>
                     </div>
+                </div>
 
-                    {/* Information Container */}
-                    <div className="flex flex-col justify-start mx-7 mt-5 py-3">
-                        <div className="">
-                            <span className="font-semibold text-2xl text-pretty">Lance Cerenio</span>
-                        </div>
-                        <div className="">
+                {/* information */}
+                <div className="mx-8 mt-5">
+                    <div>
+                        {isEditing ? (
+                            <input
+                                ref={inputRef}
+                                type="text"
+                                value={tempName}
+                                onChange={(e) => setTempName(e.target.value)}
+                                className="border p-2 rounded-md w-1/2 md:w-full border-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent"
+                            />
+                        ) : (
+                            <span className="font-semibold text-2xl text-pretty">{name}</span>
+                        )}
+                    </div>
+                    <div>
+                        {isEditing ? (
+                            <span className="hidden font-light text-xl">{email}</span>
+                        ) : (
                             <span className="font-light text-xl">{email}</span>
-                        </div>
-                    </div>
-
-                    <div className="flex gap-5 my-3 ml-7">
-
-                        <div className="flex p-1 rounded-md outline outline-offset-2 outline-1 outline-red-500 justify-center text-red-500">
-                            <div className="flex justify-center">
-                                < PlusIcon className="mx-1 w-8" />
-                            </div>
-                            <div className="flex justify-center">
-                                <button className="font-medium text-xl text-nowrap">Add Post</button>
-                            </div>
-                        </div>
-
-                        <div className="flex p-1 rounded-md outline outline-offset-2 outline-1 outline-red-500 justify-center text-red-500">
-                            <div className="flex justify-center">
-                                < PencilSquareIcon className="mx-1 w-8" />
-                            </div>
-                            <div className="flex justify-center">
-                                <button className="font-medium text-xl text-nowrap">Edit Profile</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div className="mx-7">
-                    <div className="mt-4">
-                        <span className="font-semibold text-2xl text-red-500">Posts</span>
-                    </div>
-
-                    {/* Post Section */}
-                    <div className={`${inter.className} lg:col-span-7 mt-3`}>
-                        < PostFeed />
+                        )}
                     </div>
                 </div>
 
+                {/* Operations */}
+                <div className="flex mt-5 mx-8">
+                    {isEditing ? (
+                        <div className="flex gap-5">
+                            <div className="h-7">
+                                <button
+                                    onClick={handleSaveChanges}
+                                    className="px-2 rounded-sm outline outline-offset-2 outline-1 outline-green-500 text-green-500"
+                                >
+                                    Save
+                                </button>
+                            </div>
+                            <div className="h-7">
+                                <button
+                                    onClick={handleCancelEdit}
+                                    className="px-2 rounded-sm outline outline-offset-2 outline-1 outline-red-500 text-red-500"
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    ) : (
+                        // Edit Profile
+                        <div className="flex p-1 rounded-sm outline outline-offset-2 outline-1 outline-red-500 justify-center text-red-500">
+                            <div className="flex justify-center">
+                                < PencilSquareIcon className="mx-1 w-5" />
+                            </div>
+                            <div className="flex justify-center">
+                                <button onClick={handleEditProfile} className="font-medium text-base text-nowrap">Edit Profile</button>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            {/* Post Section */}
+            <div className="pt-5 md:col-span-3 md:col-start-3">
+                <div className="sticky pt-2 pb-8 top-[75px] z-10 bg-white md:pt-7 md:fixed md:w-full lg:top-[70px]">
+                    <span className="mx-8 text-2xl font-semibold text-red-500">My Posts</span>
+                </div>
+                <div className="md:mt-16">
+                    < PostFeed />
+                </div>
             </div>
         </div>
     );
