@@ -16,7 +16,7 @@ export default function Homepage() {
 
   return (
     <ProtectedRoute>
-      <div className="mt-40 md:mt-[70px] grid grid-rows-1 lg:grid-cols-5 xl:grid-cols-12">
+      <div className={`${inter.className} mt-40 md:mt-[70px] grid grid-rows-1 lg:grid-cols-5 xl:grid-cols-12`}>
 
         {/* Feed Header */}
         <div className="flex w-full pt-8 px-8 pb-4 z-10 fixed top-[75px] bg-white justify-end xl:right-80 xl:w-[58%] xl:pb-8 xl:top-[65px]">
@@ -61,7 +61,7 @@ export default function Homepage() {
 
         {/* Post Content */}
         <div className="lg:col-span-4 lg:col-start-2 xl:col-span-7 xl:col-start-3">
-          <div className="md:mt-20">
+          <div className="md:mt-24">
             < PostFeed />
           </div>
         </div>
