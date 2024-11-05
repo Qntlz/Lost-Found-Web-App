@@ -4,8 +4,8 @@ import { inter } from '@/app/ui/fonts';
 import PostFeed from '@/app/ui/home/postFeed';
 import UsernameDisplay from '@/app/lib/getUsername';
 import ProtectedRoute from '@/app/lib/ProtectedRoute';
-import Announcements from '@/app/ui/announcement/announcements';
 import { PlusIcon } from '@heroicons/react/24/outline';
+import Announcements from '@/app/ui/announcement/announcements';
 
 export const metadata: Metadata = {
   title: 'Homepage',
