@@ -10,6 +10,7 @@ const config: Config = {
     extend: {
       screens: {
         'min-425': '425px',
+        'min-820': '820px',
         'landscape-1366': { 'raw': '(min-width: 1366px) and (orientation: landscape)' },
         'portrait-1024': { 'raw': '(min-width: 1024px) and (max-height: 1366px) and (orientation: portrait)' },
       },
