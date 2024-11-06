@@ -39,7 +39,7 @@ export default function ChatApp() {
   };
 
   return (
-    <div className="flex h-screen max-w-4xl mx-auto bg-gray-50 shadow-md rounded-lg overflow-hidden">
+    <div className="flex h-[80vh] max-w-4xl mx-auto bg-gray-50 shadow-md rounded-lg overflow-hidden">
       {/* Sidebar with user list */}
       <div className="w-1/3 bg-white p-5 border-r border-gray-200">
         <h2 className="text-xl font-semibold mb-4 text-gray-700">User List</h2>
@@ -57,7 +57,7 @@ export default function ChatApp() {
               <div>
                 <span className="text-lg">{user.name}</span>
                 <p className="text-sm text-gray-500">
-                  {user.item.startsWith("Found") ? "📍" : "🔍"} {user.item}
+                  {user.item.startsWith("Found")} {user.item}
                 </p>
               </div>
             </li>
@@ -77,7 +77,6 @@ export default function ChatApp() {
                   {selectedUser.name}
                 </h2>
                 <span className="text-sm text-gray-500">
-                  {selectedUser.item.startsWith("Found") ? "📍" : "🔍"}{" "}
                   {selectedUser.item}
                 </span>
               </div>
