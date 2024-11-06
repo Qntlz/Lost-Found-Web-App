@@ -78,9 +78,9 @@ export default function Header() {
           <div className="flex w-full items-center">
             <div className="flex items-center">
               <button onClick={() => setShowNav(!showNav)}>
-                <Bars3Icon className="w-7 mr-2 mt-2 text-gray-500 cursor-pointer" />
+                <Bars3Icon className="xl:hidden w-7 mr-2 mt-2 text-gray-500 cursor-pointer" />
               </button>
-              <span className={`${playfairDisplay.className} font-semibold text-red-500 text-xl text-nowrap`}>
+              <span className={`${playfairDisplay.className} font-semibold text-red-500 text-xl text-nowrap xl:ml-4`}>
                 LOST & FOUND
               </span>
             </div>
