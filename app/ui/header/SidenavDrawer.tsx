@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import UsernameDisplay from '@/app/lib/getUsername';
-import SignOutButton from '../header/signout';
+import SignOutButton from './signout';
 import {
     ChatBubbleLeftRightIcon,
     HomeIcon,
@@ -24,7 +24,7 @@ export default function SideNav({ show, closeNav }: { show: boolean; closeNav: (
                 {/* Logo */}
                 <div className="ml-6">
                     <Image
-                        src={'./logo.svg'} // User's avatar URL
+                        src={'/logo.svg'} // User's avatar URL
                         alt="User Avatar"
                         width={40}
                         height={40}
