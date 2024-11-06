@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import SideNav from '../home/SidenavDrawer';
+import SideNav from './SidenavDrawer';
 import {
   MagnifyingGlassIcon,
   BellAlertIcon,
@@ -74,13 +74,14 @@ export default function Header() {
     <div className="relative">
       <header className="fixed top-0 w-full z-20 bg-white p-4 border-b-2">
         <div className="grid grid-cols-2 md:grid-cols-7 w-full">
+
           {/* Left: Logo */}
           <div className="flex w-full items-center">
             <div className="flex items-center">
               <button onClick={() => setShowNav(!showNav)}>
                 <Bars3Icon className="xl:hidden w-7 mr-2 mt-2 text-gray-500 cursor-pointer" />
               </button>
-              <span className={`${playfairDisplay.className} font-semibold text-red-500 text-xl text-nowrap xl:ml-4`}>
+              <span className={`${playfairDisplay.className} font-semibold text-red-500 text-2xl text-nowrap xl:ml-4`}>
                 LOST & FOUND
               </span>
             </div>
@@ -106,17 +107,17 @@ export default function Header() {
 
           {/* Right: Notifications */}
           <div className="flex justify-self-end md:order-last">
-            <div className="ml-2 pt-2">
+            <div className="mx-2 pt-2">
               <button onClick={() => setShowSearch(!showSearch)}>
-                <MagnifyingGlassIcon className="w-6 text-red-500 cursor-pointer" />
+                <MagnifyingGlassIcon className="w-7 text-red-500 cursor-pointer" />
               </button>
             </div>
-            <div className="ml-2 pt-2">
+            <div className="mx-2 pt-2">
               <button>
-                <BellAlertIcon className="w-6 text-red-500 transition duration-0 hover:duration-150 hover:scale-110" />
+                <BellAlertIcon className="w-7 text-red-500 transition duration-0 hover:duration-150 hover:scale-110" />
               </button>
             </div>
-            <div className="hidden xl:flex w-6 ml-2">
+            <div className="hidden xl:flex w-6 mx-2">
               {/* Add Avatar Here */}
               <button onClick={() => setShowProfileNav(!showProfileNav)}>
                   < DisplayProfile/>
