@@ -68,7 +68,7 @@ export default function Homepage() {
 
         {/* Announcements Section */}
         <div className="hidden xl:block">
-          <div className="fixed lg:mt-24 lg:top-32 xl:top-0 xl:z-30">
+          <div className="fixed lg:mt-24 lg:top-32 xl:top-0 xl:z-10">
             <Announcements />
           </div>
         </div>
