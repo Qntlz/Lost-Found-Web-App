@@ -4,7 +4,9 @@ import PostFeed from '@/app/ui/home/postFeed';
 import ProtectedRoute from '@/app/lib/ProtectedRoute';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import Announcements from '@/app/ui/announcement/announcements';
-
+import AddPostButton from '@/app/ui/Post/addPostButton';
+import ModalHandler from '@/app/ui/Post/modalHandler';
+import AddPostModal from '@/app/ui/Post/addPostModal';
 
 export const metadata: Metadata = {
   title: 'Homepage',
@@ -19,12 +21,7 @@ export default function Homepage() {
 
         {/* Feed Header */}
         <div className="flex w-full pt-8 px-8 pb-4 z-10 fixed top-[70px] bg-white justify-end xl:right-80 xl:w-[58%] xl:pb-8 xl:top-[65px]">
-          <div className="p-1 rounded-md border border-red-500 text-red-500">
-            <button className="flex font-normal text-sm text-nowrap items-center">
-              <PlusIcon className="mx-1 w-5" />
-              Add Post
-            </button>
-          </div>
+          <AddPostButton/>
         </div>
 
         {/* Post Content */}
@@ -40,7 +37,8 @@ export default function Homepage() {
             <Announcements />
           </div>
         </div>
-
+          {/* Modal Handler */}
+          <ModalHandler />
       </div>
     </ProtectedRoute>
   );
