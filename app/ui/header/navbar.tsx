@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import SideNav from '../home/Sidenav';
+import SideNav from '../home/SidenavDrawer';
 import {
   MagnifyingGlassIcon,
   BellAlertIcon,
