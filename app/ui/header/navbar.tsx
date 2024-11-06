@@ -7,10 +7,13 @@ import {
   BellAlertIcon, Bars3Icon
 } from '@heroicons/react/24/outline';
 import { playfairDisplay } from '../fonts';
+import DisplayProfile from "@/app/lib/getProfile";
+import ProfileSideNav from '@/app/ui/header/ProfileSidenav';
 
 export default function Header() {
 
   const [showNav, setShowNav] = useState(false);
+  const [showProfileNav, setShowProfileNav] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
 
   return (
@@ -58,13 +61,17 @@ export default function Header() {
                 <BellAlertIcon className="w-6 text-red-500 transition duration-0 hover:duration-150 hover:scale-110" />
               </button>
             </div>
-            <div>
+            <div className="hidden xl:flex w-6 ml-2">
               {/* Add Avatar Here */}
+              <button onClick={() => setShowProfileNav(!showProfileNav)}>
+                  < DisplayProfile/>
+              </button>
             </div>
           </div>
         </div>
 
         <SideNav show={showNav} closeNav={() => setShowNav(!showNav)} />
+        <ProfileSideNav show={showProfileNav} closeNav={() => setShowProfileNav(!showProfileNav)} />
       </header>
     </div>
   );
