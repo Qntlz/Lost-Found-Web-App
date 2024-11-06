@@ -95,7 +95,7 @@ export default function SideNav({ show, closeNav }: { show: boolean; closeNav: (
             </div>
 
             {/* Utilities */}
-            <div className="mx-7 border-t border-t-red-500 py-2 space-y-1">
+            <div className=" xl:hidden mx-7 border-t border-t-red-500 py-2 space-y-1">
                 <Link href={'/home'}>
                     Settings
                 </Link>
