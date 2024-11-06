@@ -4,7 +4,7 @@ import ChatApp from '@/app/ui/chat/ChatAPP';
 
 export default function ChatPage() {
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="mt-20">
       <ChatApp />
     </div>
   );
