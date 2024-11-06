@@ -102,7 +102,7 @@ export default function Profile() {
     };
 
     return (
-        <div className={`${inter.className} mt-20 grid grid-rows divide-y-2 md:divide-y-0 md:divide-x-2 md:grid-cols-5`}>
+        <div className={`${inter.className} mt-20 grid grid-rows divide-y-2 md:divide-y-0 md:divide-x-2 md:grid-cols-5 md:ml-52`}>
 
             {/* Profile Section */}
             <div className="mb-8 md:col-span-2 md:fixed md:top-[90px]">
