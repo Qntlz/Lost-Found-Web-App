@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Metadata } from 'next';
 import { inter } from '@/app/ui/fonts';
 import PostFeed from '@/app/ui/home/postFeed';
@@ -20,10 +21,10 @@ export default function Homepage() {
         {/* Feed Header */}
         <div className="flex w-full pt-8 px-8 pb-4 z-10 fixed top-[70px] bg-white justify-end xl:right-80 xl:w-[58%] xl:pb-8 xl:top-[65px]">
           <div className="p-1 rounded-md border border-red-500 text-red-500">
-            <button className="flex font-normal text-sm text-nowrap items-center">
+            <Link href={'/post/make'} className="flex font-normal text-sm text-nowrap items-center">
               <PlusIcon className="mx-1 w-5" />
               Add Post
-            </button>
+            </Link>
           </div>
         </div>
 
