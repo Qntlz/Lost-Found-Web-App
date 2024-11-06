@@ -18,7 +18,7 @@ export default function Homepage() {
       <div className={`${inter.className} mt-40 md:mt-[70px] grid grid-rows-1 lg:grid-cols-5 xl:grid-cols-12`}>
 
         {/* Feed Header */}
-        <div className="flex w-full pt-8 px-8 pb-4 z-10 fixed top-[75px] bg-white justify-end xl:right-80 xl:w-[58%] xl:pb-8 xl:top-[65px]">
+        <div className="flex w-full pt-8 px-8 pb-4 z-10 fixed top-[70px] bg-white justify-end xl:right-80 xl:w-[58%] xl:pb-8 xl:top-[65px]">
           <div className="p-1 rounded-md border border-red-500 text-red-500">
             <button className="flex font-normal text-sm text-nowrap items-center">
               <PlusIcon className="mx-1 w-5" />
