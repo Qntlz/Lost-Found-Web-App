@@ -15,21 +15,19 @@ export default function Homepage() {
 
   return (
     <ProtectedRoute>
-      <div className={`${inter.className} mt-40 md:mt-[70px] grid grid-rows-1 lg:grid-cols-5 xl:grid-cols-12`}>
-
-        {/* Feed Header */}
-        <div className="flex w-full pt-8 px-8 pb-4 z-10 fixed top-[70px] bg-white justify-end xl:right-80 xl:w-[58%] xl:pb-8 xl:top-[65px]">
-          <div className="p-1 rounded-md border border-red-500 text-red-500">
-            <Link href={'/post/make'} className="flex font-normal text-sm text-nowrap items-center">
-              <PlusIcon className="mx-1 w-5" />
-              Add Post
-            </Link>
-          </div>
-        </div>
+      <div className={`${inter.className} mt-20 md:mt-[70px] grid grid-rows-1 lg:grid-cols-5 xl:grid-cols-12`}>
 
         {/* Post Content */}
         <div className="lg:col-span-4 lg:col-start-2 xl:col-span-7 xl:col-start-3">
-          <div className="md:mt-24">
+
+          <div className="w-fit p-1 rounded-md border border-red-500 text-red-500 mt-7 mr-7 justify-self-end">
+            <Link href={'/post/make'} className="flex font-normal text-sm text-nowrap items-center">
+              <PlusIcon className="mx-1 w-5" />
+              Add Item
+            </Link>
+
+          </div>
+          <div className="h-[70vh] mt-7 overflow-y-scroll">
             < PostFeed />
           </div>
         </div>
