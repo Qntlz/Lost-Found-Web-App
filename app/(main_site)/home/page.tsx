@@ -6,7 +6,6 @@ import ProtectedRoute from '@/app/lib/ProtectedRoute';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import Announcements from '@/app/ui/announcement/announcements';
 
-
 export const metadata: Metadata = {
   title: 'Homepage',
 };
@@ -41,7 +40,6 @@ export default function Homepage() {
             <Announcements />
           </div>
         </div>
-
       </div>
     </ProtectedRoute>
   );
