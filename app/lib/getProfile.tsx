@@ -1,23 +1,27 @@
-'use client'
+"use client"
 
-import Image from 'next/image';
-import { useState } from 'react';
+import { useState } from "react";
+import Image from "next/image";
 
-export default function DisplayProfile() {
-  // Mock user data, replace with actual user data
-  const [avatarUrl, setAvatarUrl] = useState("/logo.svg"); // Default avatar
+type DisplayProfileProps = {
+  size?: number;
+};
+
+export default function DisplayProfile({ size = 80 }: DisplayProfileProps) { // Default to 100 if not passed
+  const [avatarUrl, setAvatarUrl] = useState("/logo.svg");
+
+  // console.log("Width passed to DisplayProfile:", size); // Debug log
 
   return (
     <div className="relative">
-      {/* Avatar with Dropdown */}
       <div className="flex items-center cursor-pointer">
-        <div className="w-6 border border-red-500 rounded-3xl overflow-hidden">
+        <div>
           <Image
-            src={avatarUrl} // User's avatar URL
+            src={avatarUrl}
             alt="User Avatar"
-            width={24}
-            height={24}
-            className="object-contain"
+            width={size}
+            height={size}
+            className="p-2 rounded-full outline outline-2 outline-red-500 outline-offset-1 xl:p-0"
             priority
           />
         </div>
