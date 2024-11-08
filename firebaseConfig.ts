@@ -20,7 +20,7 @@ const auth = getAuth(app);
 const storage = getStorage(app);
 const db = getFirestore(app); 
 
-// //Only initialize analytics if we're in the browser
+// Only initialize analytics if we're in the browser
 // let analytics;
 // if (typeof window !== 'undefined') {
 //     analytics = getAnalytics(app);
