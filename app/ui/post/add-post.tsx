@@ -9,7 +9,7 @@ import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 
 export default function MakePost() {
     return (
-        <div className={`${inter.className}flex flex-col mt-20`}>
+        <div className={`${inter.className}flex flex-col mt-20 xl:hidden`}>
 
             {/* Header */}
             <div className="flex flex-row justify-between mx-5 p-5 pl-0">   
@@ -20,7 +20,7 @@ export default function MakePost() {
                             < ArrowLeftIcon />
                         </Link>
                     </div>
-                    <span className="text-2xl font-normal text-red-500">Create Post</span>
+                    <span className="text-2xl font-normal text-red-500">Report Lost Item</span>
                 </div>
 
                 {/* Post Button */}
@@ -29,6 +29,7 @@ export default function MakePost() {
                 </Button>
             </div>
 
+            {/* Contents */}
             <div className="mx-5 p-5 border-t-2">
 
                 {/* Profile Picture & Username */}

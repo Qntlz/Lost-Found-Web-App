@@ -13,6 +13,7 @@ export default function RootLayout({
 
   // Define routes where the Header should be hidden
   const hideHeaderRoutes = ["/login", "/signup", "/test", "/"];
+  const hideSideNavRoutes = ["/post/make"]
 
   return (
     <div>
@@ -20,9 +21,12 @@ export default function RootLayout({
       {/* Conditionally render Header only on routes not listed in hideHeaderRoutes */}
       {!hideHeaderRoutes.includes(pathname) && <Header />}
       <div className="xl:flex flex-col">
-        {!hideHeaderRoutes.includes(pathname) && < SideNavXL />}
+        {!hideHeaderRoutes.includes(pathname) && !hideSideNavRoutes.includes(pathname) && < SideNavXL />}
       </div>
-      {children}
+      <div className="">
+
+        {children}
+      </div>
     </div>
   );
 }
