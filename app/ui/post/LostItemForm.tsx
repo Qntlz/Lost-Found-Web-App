@@ -4,9 +4,12 @@ import clsx from "clsx";
 import React, { useRef, useState } from 'react';
 import {
     Select, Field, Description, Label,
-    Fieldset, Legend, Input, Textarea
+    Fieldset, Legend, Input, Textarea, Button
 } from "@headlessui/react";
 import { ChevronDownIcon, ArrowUpTrayIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { doc, setDoc } from "firebase/firestore";
+import { db, auth } from "@/firebaseConfig";
+
 
 export default function LostItemForm() {
 
@@ -17,6 +20,8 @@ export default function LostItemForm() {
     const [showCommonItems, setShowCommonItems] = useState(false);
     const [selectedTags, setSelectedTags] = useState<string[]>([]);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const [itemName, setItemName] = useState('');
+    const [description, setDescription] = useState('');
 
     // Handle event change when file is selected
     const handleFileOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,9 +63,34 @@ export default function LostItemForm() {
         });
     };
 
+    const handleFormSubmit = async (event: React.FormEvent) => {
+        event.preventDefault();
+        const user = auth.currentUser;
+
+        try {
+            // Define document data 
+            const itemData = {
+                user: user?.uid,
+                campus,
+                building,
+                itemName,
+                description,
+                tags: selectedTags,
+                imageUrl: selectedFile ? selectedFile.name : null // Storing file name for now
+            };
+
+            // Store data in Firestore
+            await setDoc(doc(db, "lostItems", user?.uid as string), itemData);
+            alert("Item saved successfully!");
+        } catch (error) {
+            console.error("Error saving item:", error);
+            alert("Failed to save item");
+        }
+    };
+
     return (
         <div>
-            <form action="" className="space-y-4 w-full">
+            <form onSubmit={handleFormSubmit} className="space-y-4 w-full">
                 <Fieldset className="space-y-3 rounded-xl bg-white/5">
 
                     <div className="lg:flex w-full gap-10">
@@ -98,6 +128,8 @@ export default function LostItemForm() {
                             <Field>
                                 <Label className="text-sm/6 font-medium text-black">Item Name:</Label>
                                 <Input
+                                    value={itemName}
+                                    onChange={(e) => setItemName(e.target.value)}
                                     className={clsx(
                                         'mt-3 block w-full rounded-lg border-none bg-black/5 py-1.5 px-3 text-sm/6 text-black',
                                         'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25'
@@ -171,6 +203,8 @@ export default function LostItemForm() {
                                     Any information that can help identify your lost item.
                                 </Description>
                                 <Textarea
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
                                     className={clsx(
                                         'mt-3 block w-full resize-none rounded-lg border-none bg-black/5 py-1.5 px-3 text-sm/6 text-black',
                                         'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-black/25'
@@ -262,6 +296,11 @@ export default function LostItemForm() {
                         </div>
                     </div>
                 </Fieldset>
+
+                 {/* Post Button */}
+                 <Button type="submit" className="inline-flex absolute top-[85px] right-10 items-center gap-2 rounded-md bg-red-500 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner focus:outline-none data-[hover]:bg-red-600">
+                    POST
+                </Button>
             </form>
         </div>
     );
