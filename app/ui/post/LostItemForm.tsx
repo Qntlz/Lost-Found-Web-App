@@ -77,6 +77,7 @@ export default function LostItemForm() {
                 building,
                 itemName,
                 description,
+                status: "Missing",
                 tags: selectedTags,
                 imageUrl: selectedFile ? selectedFile.name : null,          // Storing file name for now
                 submittedAt: Timestamp.now() // Use Firebase Timestamp
