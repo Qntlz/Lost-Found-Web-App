@@ -1,15 +1,11 @@
 "use client"
 
-import clsx from "clsx";
-import React, { useRef, useState } from 'react';
-import {
-    Select, Field, Description, Label,
-    Fieldset, Legend, Input, Textarea, Button
-} from "@headlessui/react";
+import { Select, Field, Description, Label,Fieldset, Legend, Input, Textarea, Button } from "@headlessui/react";
 import { ChevronDownIcon, ArrowUpTrayIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, Timestamp } from "firebase/firestore";
+import React, { useRef, useState } from 'react';
 import { db, auth } from "@/firebaseConfig";
-
+import clsx from "clsx";
 
 export default function LostItemForm() {
 
@@ -76,7 +72,8 @@ export default function LostItemForm() {
                 itemName,
                 description,
                 tags: selectedTags,
-                imageUrl: selectedFile ? selectedFile.name : null // Storing file name for now
+                imageUrl: selectedFile ? selectedFile.name : null,          // Storing file name for now
+                submittedAt: Timestamp.now() // Use Firebase Timestamp
             };
 
             // Store data in Firestore
@@ -101,7 +98,7 @@ export default function LostItemForm() {
                         {/* Button to trigger the file input dialog */}
                         <div className="lg:flex flex-col w-full lg:order-2 gap-y-5">
                             <div className="flex flex-col w-full h-40 text-lg font-bold gap-4 items-center justify-center
-                                border-2 border-dashed rounded-3xl cursor-pointer border-red-500 text-red-400 mb-5 lg:mb-0">
+                                border-2 border-dashed rounded-3xl cursor-pointer border-red-500 text-red-400 mb-5 lg:mb-0 lg:h-60 xl:h-72">
                                 <div className="flex w-16 h-16 bg-red-100 justify-center rounded-full  transition-all ease-in-out delay-150 hover:text-white hover:bg-red-500">
                                     < ArrowUpTrayIcon className="w-9" onClick={onChooseFile} />
                                 </div>
@@ -121,7 +118,7 @@ export default function LostItemForm() {
                         </div>
 
                         {/* Information Field */}
-                        <div className="mt-5">
+                        <div className="">
 
                             {/* Item Field */}
                             <Legend className="text-lg font-semibold text-black">Item details</Legend>
@@ -233,7 +230,7 @@ export default function LostItemForm() {
                                             <button
                                                 key={color}
                                                 type="button"
-                                                className={`px-3 py-1.5 rounded-full bg-gray-200 text-black hover:bg-gray-300`}
+                                                className={`px-3 py-1.5 rounded-full bg-gray-200 text-black hover:bg-gray-300 ${selectedTags.includes(color) ? 'border-[1px] border-red-500 bg-transparent hover:bg-transparent' : 'border-none'}`}
                                                 onClick={() => handleTagSelection(color)}
                                             >
                                                 {color}
@@ -254,14 +251,14 @@ export default function LostItemForm() {
                                     </button>
                                     {showCollections && (
                                         <div className="flex flex-wrap gap-2 mt-2">
-                                            {["Pastel", "Vintage", "Retro", "Neon", "Gold", "Light", "Dark", "Warm", "Cold", "Summer", "Fall", "Winter", "Spring", "Happy", "Nature", "Earth", "Night", "Space", "Rainbow", "Gradient", "Sunset", "Sky", "Sea", "Kids", "Skin", "Food", "Cream", "Coffee", "Wedding", "Christmas", "Halloween"].map(collection => (
+                                            {["Pastel", "Vintage", "Retro", "Neon", "Gold", "Light", "Dark", "Warm", "Cold", "Summer", "Fall", "Winter", "Spring", "Happy", "Nature", "Earth", "Night", "Space", "Rainbow", "Gradient", "Sunset", "Sky", "Sea", "Kids", "Skin", "Food", "Cream", "Coffee", "Wedding", "Christmas", "Halloween"].map(collectionType => (
                                                 <button
-                                                    key={collection}
+                                                    key={collectionType}
                                                     type="button"
-                                                    className="px-3 py-1.5 rounded-full bg-gray-200 text-black hover:bg-gray-300"
-                                                    onClick={() => handleTagSelection(collection)}
+                                                    className={`px-3 py-1.5 rounded-full bg-gray-200 text-black hover:bg-gray-300 ${selectedTags.includes(collectionType) ? 'border-[1px] border-red-500 bg-transparent hover:bg-transparent' : 'border-none'}`}
+                                                    onClick={() => handleTagSelection(collectionType)}
                                                 >
-                                                    {collection}
+                                                    {collectionType}
                                                 </button>
                                             ))}
                                         </div>
@@ -283,7 +280,7 @@ export default function LostItemForm() {
                                                 <button
                                                     key={item}
                                                     type="button"
-                                                    className="px-3 py-1.5 rounded-full bg-gray-200 text-black hover:bg-gray-300"
+                                                    className={`px-3 py-1.5 rounded-full bg-gray-200 text-black hover:bg-gray-300 ${selectedTags.includes(item) ? 'border-[1px] border-red-500 bg-transparent hover:bg-transparent' : 'border-none'}`}
                                                     onClick={() => handleTagSelection(item)}
                                                 >
                                                     {item}
