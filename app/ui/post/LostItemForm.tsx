@@ -1,8 +1,8 @@
 "use client"
 
-import { Select, Field, Description, Label,Fieldset, Legend, Input, Textarea, Button } from "@headlessui/react";
+import { Select, Field, Description, Label, Fieldset, Legend, Input, Textarea, Button } from "@headlessui/react";
 import { ChevronDownIcon, ArrowUpTrayIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { doc, setDoc, Timestamp } from "firebase/firestore";
+import { Timestamp, collection, addDoc } from "firebase/firestore";
 import React, { useRef, useState } from 'react';
 import { db, auth } from "@/firebaseConfig";
 import clsx from "clsx";
@@ -63,6 +63,12 @@ export default function LostItemForm() {
         event.preventDefault();
         const user = auth.currentUser;
 
+        // Check if the user is authenticated
+        if (!user) {
+            alert("You need to be logged in to submit an item.");
+            return; 
+        }
+
         try {
             // Define document data 
             const itemData = {
@@ -76,8 +82,9 @@ export default function LostItemForm() {
                 submittedAt: Timestamp.now() // Use Firebase Timestamp
             };
 
-            // Store data in Firestore
-            await setDoc(doc(db, "lostItems", user?.uid as string), itemData);
+            // Create a subcollection under the user's UID and add a new document
+            const userItemsCollection = collection(db, "lostItems", user.uid, "submissions");
+            await addDoc(userItemsCollection, itemData);
             alert("Item saved successfully!");
         } catch (error) {
             console.error("Error saving item:", error);
@@ -294,8 +301,8 @@ export default function LostItemForm() {
                     </div>
                 </Fieldset>
 
-                 {/* Post Button */}
-                 <Button type="submit" className="inline-flex absolute top-[85px] right-10 items-center gap-2 rounded-md bg-red-500 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner focus:outline-none data-[hover]:bg-red-600">
+                {/* Post Button */}
+                <Button type="submit" className="inline-flex absolute top-[85px] right-10 items-center gap-2 rounded-md bg-red-500 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner focus:outline-none data-[hover]:bg-red-600">
                     POST
                 </Button>
             </form>
