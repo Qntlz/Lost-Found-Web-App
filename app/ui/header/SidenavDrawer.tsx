@@ -80,11 +80,11 @@ export default function SideNav({ show, closeNav }: { show: boolean; closeNav: (
                     <MegaphoneIcon className="h-6 w-6 mr-2" />
                     Announcements
                 </Link>
-                <Link href={'/home'} onClick={closeNav} className="py-2 rounded-lg flex items-center">
+                <Link href={'/post/edit'} onClick={closeNav} className="py-2 rounded-lg flex items-center">
                     <PencilSquareIcon className="h-6 w-6 mr-2 -rotate-[20deg]" />
                     My Posts
                 </Link>
-                <Link href={'/home'} onClick={closeNav} className="py-2 rounded-lg flex items-center">
+                <Link href={'/chat'} onClick={closeNav} className="py-2 rounded-lg flex items-center">
                     <ChatBubbleLeftRightIcon className="h-6 w-6 mr-2" />
                     Chats
                 </Link>
