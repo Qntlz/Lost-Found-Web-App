@@ -1,14 +1,12 @@
 import Link from "next/link";
 import { inter } from "../fonts";
 import LostItemForm from "./LostItemForm";
-import DisplayProfile from "@/app/lib/getProfile";
-import UsernameDisplay from "@/app/lib/getUsername";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 
 export default function MakePost() {
 
     return (
-        <div className={`${inter.className}flex flex-col mt-20 xl:hidden`}>
+        <div className={`${inter.className}flex flex-col mt-20 `}>
 
             {/* Header */}
             <div className="flex flex-row justify-between mx-5 p-5 pl-0">   
@@ -25,23 +23,10 @@ export default function MakePost() {
 
             {/* Contents */}
             <div className="mx-5 p-5 border-t-2">
-
-                {/* Profile Picture & Username */}
-                <div className="flex flex-row gap-3 p-2 mb-5">
-                    <div className="">
-                        < DisplayProfile />
-                    </div>
-                    <div className="text-2xl">
-                        < UsernameDisplay />
-                        <span>BSCS - 1</span>
-                    </div>
-                </div>
-
                 {/* Post Form */}
                 <div>
                     < LostItemForm />
                 </div>
-
             </div>
         </div>
     );
