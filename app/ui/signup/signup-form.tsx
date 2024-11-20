@@ -4,17 +4,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { inter } from '../fonts';
 import React, { useState } from 'react';
-import { auth } from '@/firebaseConfig';
+import { auth,db } from '@/firebaseConfig';
 import SuccessAccount from './successful';
 import { useRouter } from 'next/navigation';
 import { updateProfile } from 'firebase/auth';
-import AnimatedBackground from '../background';
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import {
-    AtSymbolIcon, KeyIcon, UserCircleIcon, CheckCircleIcon,
-    XCircleIcon, EyeIcon, EyeSlashIcon
-}
-    from '@heroicons/react/24/outline';
+import { AtSymbolIcon, KeyIcon, UserCircleIcon, CheckCircleIcon, 
+XCircleIcon, EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
+import { doc, setDoc } from "firebase/firestore"; 
 
 export default function SignUpForm() {
     const router = useRouter(); // Initialize the router
@@ -70,35 +67,41 @@ export default function SignUpForm() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setError(null); // Reset error state
-
+    
         if (isPasswordValid) {
             try {
                 // Firebase authentication
                 const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
                 const user = userCredential.user;
-                console.log('User signed up:', user);
-
+                console.log("User signed up:", user);
+    
                 // Update profile to include the name
                 await updateProfile(user, {
                     displayName: formData.name,
                 });
-                console.log('User signed up and profile updated:', user);
-
-                // You can redirect to the login page
-                // router.push('/login');
-
+                console.log("User signed up and profile updated:", user);
+    
+                // Store user metadata in Firestore
+                const userRef = doc(db, "users", user.uid); // Reference to the user's document
+                await setDoc(userRef, {
+                    uid: user.uid,
+                    name: formData.name,
+                    email: formData.email,
+                    createdAt: new Date(),
+                });
+                console.log("User data stored in Firestore");
                 setShowSuccess(true);
-
+                
             } catch (error: any) {
-                if (error.code === 'auth/email-already-in-use') {
-                    setError('This email is already registered. Please use a different email or log in.');
+                if (error.code === "auth/email-already-in-use") {
+                    setError("This email is already registered. Please use a different email or log in.");
                 } else {
                     setError(error.message);
                 }
-                console.log('Error signing up:', error.message);
+                console.log("Error signing up:", error.message);
             }
         } else {
-            console.log('Password is invalid');
+            console.log("Password is invalid");
         }
     };
 
