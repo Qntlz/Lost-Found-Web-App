@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation"; // Import the hook
 import Header from "../ui/header/navbar";
 import SideNavXL from "../ui/home/SidenavSimple";
+import { inter } from "../ui/fonts";
 
 export default function RootLayout({
   children,
@@ -23,7 +24,7 @@ export default function RootLayout({
       <div className="xl:flex flex-col">
         {!hideHeaderRoutes.includes(pathname) && !hideSideNavRoutes.includes(pathname) && < SideNavXL />}
       </div>
-      <div className="">
+      <div className={`${inter.className}`}>
 
         {children}
       </div>
