@@ -49,8 +49,8 @@ export default function MyPost() {
         }
     };
 
-     // Use useEffect to fetch data when the component is mounted
-     useEffect(() => {
+    // Use useEffect to fetch data when the component is mounted
+    useEffect(() => {
         fetchUserItems();
     }, []); // Empty dependency array ensures this runs only once when the component mounts
 
@@ -62,7 +62,7 @@ export default function MyPost() {
                 <div className="flex flex-row justify-between mx-5 p-5 pl-0">
                     {/* Create Post */}
                     <div className="flex gap-2">
-                        <div className="w-5 pt-2">
+                        <div className="hidden w-5 pt-2 xl:block">
                             <Link href={'/home'}>
                                 < ArrowLeftIcon />
                             </Link>
@@ -122,12 +122,17 @@ export default function MyPost() {
                                 </div>
 
                                 {/* Post Reactions */}
-                                <div className="mt-4 flex font-light md:flex-row justify-end items-start lg:items-center ">
-                                    <div className="text-gray-500 flex items-center mb-2 lg:mb-0">
-                                        <span className="mr-2">100 views</span>
+                                <div className="flex flex-col text-gray-500 font-light">
+                                    <div className="mt-4 flex justify-end items-start md:flex-row lg:items-center ">
+                                        <div className="flex items-center mb-2 lg:mb-0">
+                                            <span className="mr-2">100 views</span>
+                                        </div>
+                                        <div className="flex items-center">
+                                            <ArrowTrendingUpIcon className='h-6 w-6 mr-2' /> 100
+                                        </div>
                                     </div>
-                                    <div className="text-gray-500 flex items-center">
-                                        <ArrowTrendingUpIcon className='h-6 w-6 mr-2' /> 100
+                                    <div className="flex justify-end">
+                                        <span> {item.submittedAt?.toDate().toLocaleDateString()} {item.submittedAt?.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                                     </div>
                                 </div>
                             </div>
