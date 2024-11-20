@@ -6,8 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
-
-
+import MyPost from "@/app/ui/post/retrieve-post";
 
 export default function Profile() {
     const inputRef = useRef<HTMLInputElement | null>(null);
@@ -147,14 +146,7 @@ export default function Profile() {
         </div>
   
         {/* Post Section */}
-        <div className="pt-5 md:col-span-3 md:col-start-3">
-          <div className="sticky pt-2 pb-8 top-[75px] z-10 bg-white md:pt-7 md:fixed md:w-full lg:top-[70px]">
-            <span className="mx-8 text-2xl font-semibold text-red-500">My Posts</span>
-          </div>
-          <div className="md:mt-16">
-            {/* Placeholder for PostFeed */}
-          </div>
-        </div>
+        < MyPost />
       </div>
     );
   }
