@@ -1,4 +1,5 @@
 export type Post = {
+    user:string
     id: string;
     itemName: string;
     campus: string;
