@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
 import { ArrowLeftIcon, ArrowTrendingUpIcon } from "@heroicons/react/24/outline";
-import { getDocs, collection, query } from "firebase/firestore";
+import { getDocs, collection, query, updateDoc, doc } from "firebase/firestore";
 import { Post } from "@/app/lib/definitions";
 import { db, auth } from "@/firebaseConfig";
 import { inter } from "@/app/ui/fonts";
@@ -49,11 +49,35 @@ export default function MyPost() {
         }
     };
 
+    const markAsFound = async (itemId: string) => {
+        const user = auth.currentUser;
+
+        if (!user) {
+            alert("You need to be logged in to mark an item.");
+            return;
+        }
+
+        try {
+            // Reference to the specific item document
+            const itemRef = doc(db, "lostItems", user.uid, "submissions", itemId);
+
+            // Update the item's status to "Found"
+            await updateDoc(itemRef, {
+                status: "Found"
+            });
+
+            // Fetch updated items
+            fetchUserItems();
+        } catch (error) {
+            console.error("Error updating status:", error);
+            alert("Failed to update the item's status.");
+        }
+    };
+
     // Use useEffect to fetch data when the component is mounted
     useEffect(() => {
         fetchUserItems();
     }, []); // Empty dependency array ensures this runs only once when the component mounts
-
 
     return (
         <div className={`${inter.className} mt-20 md:mt-[70px] grid grid-rows-1 lg:grid-cols-5 xl:grid-cols-12`}>
@@ -71,7 +95,7 @@ export default function MyPost() {
                     </div>
                 </div>
 
-                {/* Retrieve & Diplay Post Information from Database */}
+                {/* Retrieve & Display Post Information from Database */}
                 {items.length > 0 ? (
                     items.map((item) => (
                         <div key={item.id} className="bg-white mx-7 rounded-lg mb-6">
@@ -119,6 +143,16 @@ export default function MyPost() {
                                             <p>No tags</p>
                                         )}
                                     </div>
+
+                                    {/* Mark as Found Button */}
+                                    {item.status === "Missing" && (
+                                        <button
+                                            onClick={() => markAsFound(item.id)}
+                                            className="mt-4 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
+                                        >
+                                            Mark as Found
+                                        </button>
+                                    )}
                                 </div>
 
                                 {/* Post Reactions */}
@@ -144,5 +178,4 @@ export default function MyPost() {
             </div>
         </div>
     );
-
 }
