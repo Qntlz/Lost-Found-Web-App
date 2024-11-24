@@ -80,15 +80,15 @@ export default function MyPost() {
     }, []); // Empty dependency array ensures this runs only once when the component mounts
 
     return (
-        <div className={`${inter.className} mt-20 md:mt-[70px] grid grid-rows-1 lg:grid-cols-5 xl:grid-cols-12`}>
-            <div>
+        <div className={`${inter.className} mt-20 md:mt-[70px] grid grid-rows-1 lg:grid-cols-5 xl:grid-cols-12 justify-center items-center`}>
+            <div className="col-span-full md:col-span-5 lg:col-span-10 xl:col-span-8"> {/* Centered content */}
                 {/* Header */}
                 <div className="flex flex-row justify-between mx-5 p-5 pl-0">
                     {/* Create Post */}
                     <div className="flex gap-2">
                         <div className="hidden w-5 pt-2 xl:block">
                             <Link href={'/home'}>
-                                < ArrowLeftIcon />
+                                <ArrowLeftIcon />
                             </Link>
                         </div>
                         <span className="text-2xl font-normal text-red-500">My Posts</span>
