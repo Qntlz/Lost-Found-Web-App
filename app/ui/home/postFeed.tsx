@@ -1,10 +1,11 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import clsx from "clsx";
 import Image from "next/image";
-import { useState, useEffect } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { ArrowTrendingUpIcon } from "@heroicons/react/24/outline";
+import { HeartIcon } from "@heroicons/react/24/outline";  // Add HeartIcon import
 import { Post } from "@/app/lib/definitions";
 import { db } from "@/firebaseConfig";
 import { inter } from "../fonts";
@@ -16,6 +17,7 @@ export default function PostFeed() {
   const [selectedCampus, setSelectedCampus] = useState("All");
   const [selectedBuilding, setSelectedBuilding] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [likedPosts, setLikedPosts] = useState<Set<string>>(new Set()); // State to track liked posts
 
   // Fetch all user data from Firestore
   const fetchUserUIDs = async () => {
@@ -76,6 +78,19 @@ export default function PostFeed() {
     setSearchQuery(e.target.value);
   };
 
+  // Toggle like for a post
+  const toggleLike = (postId: string) => {
+    setLikedPosts((prevLikedPosts) => {
+      const newLikedPosts = new Set(prevLikedPosts);
+      if (newLikedPosts.has(postId)) {
+        newLikedPosts.delete(postId);
+      } else {
+        newLikedPosts.add(postId);
+      }
+      return newLikedPosts;
+    });
+  };
+
   useEffect(() => {
     fetchAllItems();
     fetchUserUIDs();
@@ -98,24 +113,22 @@ export default function PostFeed() {
               <select onChange={(e) => setSelectedCampus(e.target.value)} value={selectedCampus} className="p-2 border border-gray-300 rounded-md">
                 <option value="All">All Campus</option>
                 <option value="Talamban">Talamban</option>
-                {/* Add more campuses as needed */}
               </select>
               <select onChange={(e) => setSelectedBuilding(e.target.value)} value={selectedBuilding} className="p-2 border border-gray-300 rounded-md">
                 <option value="All">All Buildings</option>
                 <option value="Bunzell">Bunzell</option>
                 <option value="SAFAD">SAFAD</option>
-                {/* Add more buildings as needed */}
               </select>
             </div>
 
             {/* Search Bar */}
-            <div className="relative w-full max-w-5xl"> {/* Increased max width */}
+            <div className="relative w-full max-w-5xl">
               <input
                 type="text"
                 placeholder="Search items..."
                 value={searchQuery}
                 onChange={handleSearchChange}
-                className="w-[400px] p-2 border border-gray-300 rounded-md "
+                className="w-[400px] p-2 border border-gray-300 rounded-md"
               />
             </div>
           </div>
@@ -140,7 +153,16 @@ export default function PostFeed() {
 
                   {/* Post Details */}
                   <div className="flex-1 mt-4 lg:mt-0">
-                    <h3 className="font-bold text-lg">{item.itemName}</h3>
+                    <h3 className="font-bold text-lg flex items-center">
+                      {item.itemName}
+                      <HeartIcon
+                        className={clsx("ml-2 h-6 w-6 cursor-pointer", {
+                          "text-red-500 fill-current": likedPosts.has(item.id), // Filled heart if liked
+                          "text-gray-500": !likedPosts.has(item.id), // Outline heart if not liked
+                        })}
+                        onClick={() => toggleLike(item.id)} // Add click handler to toggle like
+                      />
+                    </h3>
                     <p className="font-medium text-gray-500">
                       {userList.find((user) => user.id === item.user)?.name || "Unknown User"}
                     </p>
@@ -183,24 +205,16 @@ export default function PostFeed() {
                         <span className="mr-2">100 views</span>
                       </div>
                       <div className="flex items-center">
-                        <ArrowTrendingUpIcon className="h-6 w-6 mr-2" /> 100
+                        <ArrowTrendingUpIcon className="h-6 w-6" />
+                        <span className="ml-2">10</span>
                       </div>
-                    </div>
-                    <div className="flex justify-end">
-                      <span>
-                        {item.submittedAt?.toDate().toLocaleDateString()}{" "}
-                        {item.submittedAt?.toDate().toLocaleTimeString([], {
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}
-                      </span>
                     </div>
                   </div>
                 </div>
               </div>
             ))
           ) : (
-            <p>No items found.</p>
+            <p>No posts found.</p>
           )}
         </div>
       </div>
