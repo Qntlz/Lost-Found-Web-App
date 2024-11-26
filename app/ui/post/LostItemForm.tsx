@@ -12,7 +12,7 @@ import clsx from "clsx";
 export default function LostItemForm() {
 
     const router = useRouter();
-    const [campus, setCampus] = useState('');
+    const [campus, setCampus] = useState<string>("Main");     // Default Value
     const [building, setBuilding] = useState('');
     const inputRef = useRef<HTMLInputElement | null>(null);
     const [showCollections, setShowCollections] = useState(false);
