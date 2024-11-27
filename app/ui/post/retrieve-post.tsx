@@ -1,11 +1,12 @@
 "use client";
 
-import { ArrowLeftIcon, ArrowTrendingUpIcon } from "@heroicons/react/24/outline";
-import { getDocs, collection, query, updateDoc, doc } from "firebase/firestore";
+import { getDocs, collection, query, updateDoc, doc, getDoc } from "firebase/firestore";
+import { ArrowLeftIcon } from "@heroicons/react/24/outline";
+import { onAuthStateChanged } from "firebase/auth";
 import { Post } from "@/app/lib/definitions";
 import { db, auth } from "@/firebaseConfig";
-import { inter } from "@/app/ui/fonts";
 import { useState, useEffect } from "react";
+import { inter } from "@/app/ui/fonts";
 import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
@@ -15,64 +16,83 @@ export default function MyPost() {
     const [items, setItems] = useState<Post[]>([]); // State to store the items
 
     const fetchUserItems = async () => {
-        const user = auth.currentUser;
-
-        // Check if the user is authenticated
-        if (!user) {
-            alert("You need to be logged in to view your items.");
-            return;
-        }
-
-        try {
-            // Reference to the user's "items" collection
-            const itemsRef = collection(db, "lostItems", user.uid, "submissions");
-
-            // Query to fetch all items (you can also add filtering criteria)
-            const q = query(itemsRef);
-
-            // Get documents
-            const querySnapshot = await getDocs(q);
-
-            // Handle the documents returned from the query
-            const storedItems = querySnapshot.docs.map(doc => ({
-                id: doc.id,                                             // Get the document ID
-                ...doc.data()                                           // Get the data from the document
-            })) as Post[];
-
-            setItems(storedItems);
-
-            // Do something with the items
-            console.log("User's items:", storedItems);
-        } catch (error) {
-            console.error("Error fetching items:", error);
-            alert("Failed to fetch items.");
-        }
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                alert("You need to be logged in to view your items.");
+                return;
+            }
+    
+            try {
+                // Reference to the user's "items" collection
+                const itemsRef = collection(db, "lostItems", user.uid, "submissions");
+    
+                // Query to fetch all items
+                const q = query(itemsRef);
+    
+                // Get documents
+                const querySnapshot = await getDocs(q);
+    
+                // Handle the documents returned from the query
+                const storedItems = querySnapshot.docs.map(doc => ({
+                    id: doc.id,                                             // Get the document ID
+                    ...doc.data()                                           // Get the data from the document
+                })) as Post[];
+    
+                setItems(storedItems);
+    
+                // Do something with the items
+                console.log("User's items:", storedItems);
+            } catch (error) {
+                console.error("Error fetching items:", error);
+                alert("Failed to fetch items.");
+            }
+        });
     };
 
     const markAsFound = async (itemId: string) => {
         const user = auth.currentUser;
-
+    
         if (!user) {
             alert("You need to be logged in to mark an item.");
             return;
         }
-
+    
         try {
-            // Reference to the specific item document
+            // Reference to the specific item document in lostItems
             const itemRef = doc(db, "lostItems", user.uid, "submissions", itemId);
-
-            // Update the item's status to "Found"
-            await updateDoc(itemRef, {
-                status: "Found"
-            });
-
+    
+            // Retrieve the "globalPostID" from the lostItems document
+            const itemDoc = await getDoc(itemRef);
+            if (!itemDoc.exists()) {
+                alert("Item not found.");
+                return;
+            }
+    
+            const globalPostID = itemDoc.data().globalPostID;
+            if (!globalPostID) {
+                alert("GlobalPostID not found in the item.");
+                return;
+            }
+    
+            // Reference to the corresponding document in allSubmissions
+            const globalItemRef = doc(db, "allSubmissions", globalPostID);
+    
+            // Update the item's status to "Found" in both collections
+            await Promise.all([
+                updateDoc(itemRef, { status: "Found" }),
+                updateDoc(globalItemRef, { status: "Found" })
+            ]);
+    
             // Fetch updated items
             fetchUserItems();
+    
+            //alert("Item marked as found successfully!");
         } catch (error) {
             console.error("Error updating status:", error);
             alert("Failed to update the item's status.");
         }
     };
+    
 
     // Use useEffect to fetch data when the component is mounted
     useEffect(() => {
@@ -80,8 +100,8 @@ export default function MyPost() {
     }, []); // Empty dependency array ensures this runs only once when the component mounts
 
     return (
-        <div className={`${inter.className} mt-20 md:mt-[70px] grid grid-rows-1 lg:grid-cols-5 xl:grid-cols-12 justify-center items-center`}>
-            <div className="col-span-full md:col-span-5 lg:col-span-10 xl:col-span-8"> {/* Centered content */}
+        <div className={`${inter.className} mt-20 md:mt-[70px] grid grid-rows-1 lg:grid-cols-5 xl:grid-cols-12 items-center`}>
+            <div className="col-span-full md:col-span-5 lg:col-span-10 xl:col-span-8">
                 {/* Header */}
                 <div className="flex flex-row justify-between mx-5 p-5 pl-0">
                     {/* Create Post */}
@@ -143,30 +163,25 @@ export default function MyPost() {
                                             <p>No tags</p>
                                         )}
                                     </div>
-
-                                    {/* Mark as Found Button */}
-                                    {item.status === "Missing" && (
-                                        <button
-                                            onClick={() => markAsFound(item.id)}
-                                            className="mt-4 bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
-                                        >
-                                            Mark as Found
-                                        </button>
-                                    )}
                                 </div>
 
-                                {/* Post Reactions */}
-                                <div className="flex flex-col text-gray-500 font-light">
-                                    <div className="mt-4 flex justify-end items-start md:flex-row lg:items-center ">
-                                        <div className="flex items-center mb-2 lg:mb-0">
-                                            <span className="mr-2">100 views</span>
-                                        </div>
+                                {/* Post Date */}
+                                <div className="text-gray-500 font-light">
+                                    <div className="mt-4 flex justify-between items-start md:flex-row lg:items-center">
                                         <div className="flex items-center">
-                                            <ArrowTrendingUpIcon className='h-6 w-6 mr-2' /> 100
+                                            <span className="mt-3"> {item.submittedAt?.toDate().toLocaleDateString()} {item.submittedAt?.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                                         </div>
+                                        <div className="flex">
+                                        {/* Mark as Found Button */}
+                                        {item.status === "Missing" && (
+                                            <button
+                                                onClick={() => markAsFound(item.id)}
+                                                className="mt-1 bg-red-500 text-white px-3 py-1 rounded-md"
+                                            >
+                                                Mark as Found
+                                            </button>
+                                        )}
                                     </div>
-                                    <div className="flex justify-end">
-                                        <span> {item.submittedAt?.toDate().toLocaleDateString()} {item.submittedAt?.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                                     </div>
                                 </div>
                             </div>
