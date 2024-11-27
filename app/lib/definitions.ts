@@ -1,12 +1,40 @@
-export type Post = {
-    user:string
+export type user = {
     id: string;
-    itemName: string;
+    name: string;
+};
+
+export type userListProps = {
+    items: Post[];
+    userList: user[];
+    showFilters: boolean;
+    selectedStatus: string;
+    selectedCampus: string; 
+    selectedBuilding: string;
+    setItems: React.Dispatch<React.SetStateAction<Post[]>>; 
+    setUserList: React.Dispatch<React.SetStateAction<user[]>>; 
+};
+
+
+export type Post = {
+    id: string;
+    user:string;
+    tags: string[];
     campus: string;
+    status: string;
+    submittedAt: any;
+    itemName: string;
     building: string;
     description: string;
-    status: string,
-    tags: string[];
     imageUrl: string | null;
-    submittedAt: any; // Use Timestamp or Date type if needed
 };
+
+export type Feed = {
+    showFilters: boolean;
+    selectedStatus: string;
+    selectedCampus: string;
+    selectedBuilding: string;
+    setShowFilters: React.Dispatch<React.SetStateAction<boolean>>;
+    setSelectedStatus: React.Dispatch<React.SetStateAction<string>>;
+    setSelectedCampus: React.Dispatch<React.SetStateAction<string>>;
+    setSelectedBuilding: React.Dispatch<React.SetStateAction<string>>;
+}
