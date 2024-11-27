@@ -2,7 +2,7 @@
 
 import { Select, Field, Description, Label, Fieldset, Legend, Input, Textarea, Button } from "@headlessui/react";
 import { ChevronDownIcon, ArrowUpTrayIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { Timestamp, collection, addDoc } from "firebase/firestore";
+import { Timestamp, collection, addDoc, setDoc, doc } from "firebase/firestore";
 import React, { useRef, useState } from 'react';
 import { db, auth } from "@/firebaseConfig";
 import { useRouter } from 'next/navigation'
@@ -65,44 +65,48 @@ export default function LostItemForm() {
     const handleFormSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         const user = auth.currentUser;
-
+    
         // Check if the user is authenticated
         if (!user) {
             alert("You need to be logged in to submit an item.");
             return;
         }
-
+    
         try {
             // Define document data 
             const itemData = {
-                user: user?.uid,
+                user: user.uid,
                 campus,
                 building,
                 itemName,
                 description,
                 status: "Missing",
                 tags: selectedTags,
-                imageUrl: selectedFile ? selectedFile.name : null,          // Storing file name for now
-                submittedAt: Timestamp.now() // Use Firebase Timestamp
+                imageUrl: selectedFile ? selectedFile.name : null, // Storing file name for now
+                submittedAt: Timestamp.now(), // Use Firebase Timestamp
             };
-
-            // Create a subcollection under the user's UID and add a new document
+    
+            // Reference the user's submissions subcollection
             const userItemsCollection = collection(db, "lostItems", user.uid, "submissions");
-
-            // Reference to the top-level "allSubmissions" collection
+    
+            // Reference the top-level "allSubmissions" collection
             const allSubmissionsRef = collection(db, "allSubmissions");
-
-            await Promise.all([
-                await addDoc(userItemsCollection, itemData),
-                await addDoc(allSubmissionsRef, itemData)
-            ]);
-            
+    
+            // Add document to the "allSubmissions" collection
+            const globalDocRef = await addDoc(allSubmissionsRef, itemData);
+    
+            // Add document to the user's subcollection with the `globalPostID` link
+            await addDoc(userItemsCollection, {
+                ...itemData,
+                globalPostID: globalDocRef.id, // Link to the global post
+            });
+    
             alert("Item saved successfully!");
         } catch (error) {
             console.error("Error saving item:", error);
-            alert("Failed to save item");
+            alert("Failed to save item.");
         }
-    };
+    };    
 
     return (
         <div>
@@ -110,11 +114,11 @@ export default function LostItemForm() {
                 <Fieldset className="space-y-3 rounded-xl bg-white/5">
 
                     <div className="lg:flex w-full gap-10">
+
                         {/* Upload Image Field */}
                         {/* Hidden file input element */}
                         <input type="file" ref={inputRef} onChange={handleFileOnChange} className="hidden" />
 
-                        {/* Button to trigger the file input dialog */}
                         <div className="lg:flex flex-col w-full lg:order-2 gap-y-5">
                             <div className="flex flex-col w-full h-40 text-lg font-bold gap-4 items-center justify-center
                                 border-2 border-dashed rounded-3xl cursor-pointer border-red-500 text-red-400 mb-5 lg:mb-0 lg:h-60 xl:h-72">
@@ -192,9 +196,9 @@ export default function LostItemForm() {
                                             <option value="">Select Building:</option>
                                             {campus === 'Main' ? (
                                                 <>
-                                                    <option value="Wing1">Wing1</option>
-                                                    <option value="Wing2">Wing2</option>
-                                                    <option value="Wing3">Wing3</option>
+                                                    <option value="Wing 1">Wing 1</option>
+                                                    <option value="Wing 2">Wing 2</option>
+                                                    <option value="Wing 3">Wing 3</option>
                                                 </>
                                             ) : (
                                                 <>
