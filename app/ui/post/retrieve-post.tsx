@@ -6,7 +6,6 @@ import { onAuthStateChanged } from "firebase/auth";
 import { Post } from "@/app/lib/definitions";
 import { db, auth } from "@/firebaseConfig";
 import { useState, useEffect } from "react";
-import { inter } from "@/app/ui/fonts";
 import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
@@ -100,17 +99,13 @@ export default function MyPost() {
     }, []); // Empty dependency array ensures this runs only once when the component mounts
 
     return (
-        <div className={`${inter.className} mt-20 md:mt-[70px] grid grid-rows-1 lg:grid-cols-5 xl:grid-cols-12 items-center`}>
-            <div className="col-span-full md:col-span-5 lg:col-span-10 xl:col-span-8">
+        <div className="mt-5 md:mt-0 grid grid-rows-1 lg:grid-cols-5 xl:grid-cols-12">
+            
+            <div className="col-span-full md:col-span-5 lg:col-span-10 xl:col-span-8 items-start">
+                
                 {/* Header */}
                 <div className="flex flex-row justify-between mx-5 p-5 pl-0">
-                    {/* Create Post */}
                     <div className="flex gap-2">
-                        <div className="hidden w-5 pt-2 xl:block">
-                            <Link href={'/home'}>
-                                <ArrowLeftIcon />
-                            </Link>
-                        </div>
                         <span className="text-2xl font-normal text-red-500">My Posts</span>
                     </div>
                 </div>
@@ -121,7 +116,7 @@ export default function MyPost() {
                         <div key={item.id} className="bg-white mx-7 rounded-lg mb-6">
 
                             {/* Post Section */}
-                            <div className="flex flex-col lg:flex-row space-x-0 lg:space-x-4">
+                            <div className="flex flex-col space-x-0 lg:space-x-4">
                                 {/* Image */}
                                 <div className="w-full lg:w-2/5 h-56 flex items-center justify-center">
                                     <Image
@@ -169,7 +164,7 @@ export default function MyPost() {
                                 <div className="text-gray-500 font-light">
                                     <div className="mt-4 flex justify-between items-start md:flex-row lg:items-center">
                                         <div className="flex items-center">
-                                            <span className="mt-3"> {item.submittedAt?.toDate().toLocaleDateString()} {item.submittedAt?.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                                            <span className="mt-2"> {item.submittedAt?.toDate().toLocaleDateString()} {item.submittedAt?.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                                         </div>
                                         <div className="flex">
                                         {/* Mark as Found Button */}
@@ -188,7 +183,7 @@ export default function MyPost() {
                         </div>
                     ))
                 ) : (
-                    <p>No items found.</p>
+                    <p className="mx-5">No items found.</p>
                 )}
             </div>
         </div>

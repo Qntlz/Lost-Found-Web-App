@@ -101,7 +101,7 @@ export default function LostItemForm() {
                 globalPostID: globalDocRef.id, // Link to the global post
             });
     
-            alert("Item saved successfully!");
+            //alert("Item saved successfully!");
         } catch (error) {
             console.error("Error saving item:", error);
             alert("Failed to save item.");
@@ -263,31 +263,6 @@ export default function LostItemForm() {
 
                                 </div>
 
-                                {/* Collections Category */}
-                                <div className="mt-3">
-                                    <button
-                                        type="button"
-                                        className="text-sm font-medium text-black"
-                                        onClick={() => setShowCollections(!showCollections)}
-                                    >
-                                        Collections
-                                    </button>
-                                    {showCollections && (
-                                        <div className="flex flex-wrap gap-2 mt-2">
-                                            {["Pastel", "Vintage", "Retro", "Neon", "Gold", "Light", "Dark", "Warm", "Cold", "Summer", "Fall", "Winter", "Spring", "Happy", "Nature", "Earth", "Night", "Space", "Rainbow", "Gradient", "Sunset", "Sky", "Sea", "Kids", "Skin", "Food", "Cream", "Coffee", "Wedding", "Christmas", "Halloween"].map(collectionType => (
-                                                <button
-                                                    key={collectionType}
-                                                    type="button"
-                                                    className={`px-3 py-1.5 rounded-full bg-gray-200 text-black hover:bg-gray-300 ${selectedTags.includes(collectionType) ? 'border-[1px] border-red-500 bg-transparent hover:bg-transparent' : 'border-none'}`}
-                                                    onClick={() => handleTagSelection(collectionType)}
-                                                >
-                                                    {collectionType}
-                                                </button>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-
                                 {/* Common Items */}
                                 <div className="mt-3">
                                     <button
@@ -299,7 +274,7 @@ export default function LostItemForm() {
                                     </button>
                                     {showCommonItems && (
                                         <div className="flex flex-wrap gap-2 mt-2">
-                                            {["Smartphone", "Tablet", "Smartwatch", "Wallet", "Earbuds"].map(item => (
+                                            {["Smartphone", "Tablet", "Smartwatch", "Wallet", "Earbuds","Laptop","Bag"].map(item => (
                                                 <button
                                                     key={item}
                                                     type="button"

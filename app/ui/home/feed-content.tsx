@@ -73,7 +73,7 @@ export default function Posts({
                 items.map((item) => (
                     <div key={item.id} className="bg-white mx-7 rounded-lg mb-6">
                         {/* Post Section */}
-                        <div className="flex flex-col lg:flex-row space-x-0 lg:space-x-4">
+                        <div className="flex flex-col lg:flex-row">
                             {/* Image */}
                             <div className="w-full lg:w-2/5 h-56 flex items-center justify-center">
                                 <Image
@@ -122,16 +122,16 @@ export default function Posts({
                                         <p>No tags</p>
                                     )}
                                 </div>
-                            </div>
-
-                            {/* Post Date */}
-                            <div className="text-gray-500 font-light">
-                                <div className="mt-4 flex justify-end items-start md:flex-row lg:items-center">                               
-                                    <div>
-                                        <span> {item.submittedAt?.toDate().toLocaleDateString()} {item.submittedAt?.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                                {/* Post Date */}
+                                <div className="text-gray-500 font-light">
+                                    <div className="mt-4 flex justify-end items-start md:flex-row lg:items-center">                               
+                                        <div>
+                                            <span> {item.submittedAt?.toDate().toLocaleDateString()} {item.submittedAt?.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 ))
