@@ -77,15 +77,13 @@ export default function Profile() {
     };
   
     return (
-      <div className="mt-20 grid grid-rows divide-y-2 md:divide-y-0 md:divide-x-2 md:grid-cols-5 md:ml-52">
+      <div className="flex flex-col mt-20 lg:ml-52 md:flex-row">
         {/* Profile Section */}
-        <div className="mb-8 md:col-span-2 md:fixed md:top-[90px]">
+        <div className="">
           {/* Profile Picture */}
           <div>
-            <div className="mx-7 mt-3">
-              <span className="font-semibold text-2xl text-red-500">Profile Details</span>
-            </div>
-            <div className="mt-8 mx-8">
+            
+            <div className="mt-10 md:mt-16 mx-8">
               <Image
                 src="/logo.svg"
                 alt="User Avatar"
@@ -146,7 +144,9 @@ export default function Profile() {
         </div>
   
         {/* Post Section */}
-        < MyPost />
+        <div className="grow">
+          < MyPost />
+        </div>
       </div>
     );
   }

@@ -14,16 +14,16 @@ export default function FeedHeader({
     setSelectedBuilding, setShowFilters
   }: Feed){
     return(
-        <div className="flex flex-row justify-between mx-5">
+        <div className="flex flex-row justify-between mx-5 pb-2 pt-3 lg:pt-8 xl:pt-5">
 
             {/* Filter & Add Item Buttons */}
-            <div className="h-8 p-1 mt-2 rounded-md border justify-self-end border-red-500 text-red-500 order-2">
+            <div className="h-8 p-1 mt-2 mr-3 rounded-md border justify-self-end border-red-500 text-red-500 order-2">
                 <Link href={'/post/make'} className="flex font-normal text-sm text-nowrap items-center">
                 <PlusIcon className="mx-1 w-5" />
                 Add Item
                 </Link>
             </div>
-            <div className="flex text-gray-500">
+            <div className="flex text-gray-400">
             {/* Funnel Icon */}
             <button
                 onClick={() => setShowFilters((prev) => !prev)}
@@ -35,12 +35,12 @@ export default function FeedHeader({
 
             {/* Filter Options */}
           {showFilters && (
-            <div className="absolute top-32 left-0 p-4 flex flex-wrap gap-4 bg-white">
+            <div className="absolute top-36 left-0 p-4 flex flex-wrap gap-4 bg-white lg:top-36 lg:left-52">
               <div className="flex gap-2">
                 <select
                   onChange={(e) => setSelectedStatus(e.target.value)}
                   value={selectedStatus}
-                  className="p-2 border border-gray-300 rounded-md"
+                  className="p-2 border border-red-400 rounded-md"
                 >
                   <option value="All">All Status</option>
                   <option value="Found">Found</option>
@@ -49,7 +49,7 @@ export default function FeedHeader({
                 <select
                   onChange={(e) => setSelectedCampus(e.target.value)}
                   value={selectedCampus}
-                  className="p-2 border border-gray-300 rounded-md"
+                  className="p-2 border border-red-400 rounded-md"
                 >
                   <option value="All">All Campus</option>
                   <option value="Main">Main</option>
@@ -59,11 +59,17 @@ export default function FeedHeader({
                 <select
                   onChange={(e) => setSelectedBuilding(e.target.value)}
                   value={selectedBuilding}
-                  className="p-2 border border-gray-300 rounded-md"
+                  className="p-2 border border-red-400 rounded-md"
                 >
                   <option value="All">All Buildings</option>
                   <option value="Bunzell">Bunzell</option>
+                  <option value="Chapel">Chapel</option>
+                  <option value="Dormitory">Dormitory</option>
+                  <option value="MR">MR</option>
+                  <option value="PE">PE</option>
+                  <option value="RH">RH</option>
                   <option value="SAFAD">SAFAD</option>
+                  <option value="SMED">SMED</option>
                   <option value="Wing 1">Wing 1</option>
                   <option value="Wing 2">Wing 2</option>
                   <option value="Wing 3">Wing 3</option>
