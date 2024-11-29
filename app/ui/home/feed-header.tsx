@@ -40,16 +40,17 @@ export default function FeedHeader({
                 <select
                   onChange={(e) => setSelectedStatus(e.target.value)}
                   value={selectedStatus}
-                  className="p-2 border border-red-400 rounded-md"
+                  className="p-2 border border-red-400 rounded-md focus:outline-none focus:ring-1 focus:ring-red-400 focus:border-transparent"
                 >
-                  <option value="All">All Status</option>
-                  <option value="Found">Found</option>
                   <option value="Missing">Missing</option>
+                  <option value="Found">Found</option>
+                  <option value="All">All Status</option>
                 </select>
                 <select
                   onChange={(e) => setSelectedCampus(e.target.value)}
                   value={selectedCampus}
-                  className="p-2 border border-red-400 rounded-md"
+                  className="p-2 border border-red-400 rounded-md focus:outline-none focus:ring-1 focus:ring-red-400 focus:border-transparent"
+                  
                 >
                   <option value="All">All Campus</option>
                   <option value="Main">Main</option>
@@ -59,7 +60,7 @@ export default function FeedHeader({
                 <select
                   onChange={(e) => setSelectedBuilding(e.target.value)}
                   value={selectedBuilding}
-                  className="p-2 border border-red-400 rounded-md"
+                  className="p-2 border border-red-400 rounded-md focus:outline-none focus:ring-1 focus:ring-red-400 focus:border-transparent"
                 >
                   <option value="All">All Buildings</option>
                   <option value="Bunzell">Bunzell</option>
