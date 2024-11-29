@@ -9,7 +9,7 @@ import { user, Post } from "@/app/lib/definitions";
 export default function Feed(){
 
   const [items, setItems] = useState<Post[]>([]);
-  const [selectedStatus, setSelectedStatus] = useState("All");
+  const [selectedStatus, setSelectedStatus] = useState("Missing");
   const [selectedCampus, setSelectedCampus] = useState("All");
   const [selectedBuilding, setSelectedBuilding] = useState("All");
   const [userList, setUserList] = useState<user[]>([]);
