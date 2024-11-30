@@ -12,7 +12,7 @@ const CreateAnnouncement: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await addDoc(collection(db, 'announcements'), {
+      await addDoc(collection(db, "allAnnouncement"), {
         title,
         body,
         date_added: new Date(),
