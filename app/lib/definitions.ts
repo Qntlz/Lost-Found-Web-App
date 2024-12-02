@@ -8,16 +8,16 @@ export type userListProps = {
     userList: user[];
     showFilters: boolean;
     selectedStatus: string;
-    selectedCampus: string; 
+    selectedCampus: string;
     selectedBuilding: string;
-    setItems: React.Dispatch<React.SetStateAction<Post[]>>; 
-    setUserList: React.Dispatch<React.SetStateAction<user[]>>; 
+    setItems: React.Dispatch<React.SetStateAction<Post[]>>;
+    setUserList: React.Dispatch<React.SetStateAction<user[]>>;
 };
 
 
 export type Post = {
     id: string;
-    user:string;
+    user: string;
     tags: string[];
     campus: string;
     status: string;
@@ -37,4 +37,16 @@ export type Feed = {
     setSelectedStatus: React.Dispatch<React.SetStateAction<string>>;
     setSelectedCampus: React.Dispatch<React.SetStateAction<string>>;
     setSelectedBuilding: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export type ArchivePost = {
+    id: string;
+    itemName: string;
+    description: string;
+    status: "Found" | "Missing";
+    campus: string;
+    building: string;
+    tags: string[];
+    user: string;
+    submittedAt: Date;
 }
