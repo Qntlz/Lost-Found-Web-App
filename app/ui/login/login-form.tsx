@@ -111,17 +111,24 @@ export default function LoginPage() {
                     >
                         Log In
                     </button>
+                <div className="flex flex-col items-start pr-5">
+                    <p className="text-center text-sm text-gray-600 mt-4">
+                        <Link href="/signup" className="text-red-600 hover:underline">
+                            Forgot Password?
+                        </Link>
+                    </p>
+                    <p className="text-center text-sm text-gray-600 mt-4">
+                        Don't have an account?{' '}
+                        <Link href="/signup" className="text-red-600 hover:underline">
+                            Sign Up
+                        </Link>
+                    </p>
+                </div>
                 </form>
-                <p className="text-center text-sm text-gray-600 mt-4">
-                    Don't have an account?{' '}
-                    <Link href="/signup" className="text-red-600 hover:underline">
-                        Sign Up
-                    </Link>
-                </p>
             </div>
 
-             {/* Ipad Pro */}
-             <div className={`${inter.className} hidden portrait-1024:flex w-full flex-col`}>
+            {/* Ipad Pro */}
+            <div className={`${inter.className} hidden portrait-1024:flex w-full flex-col`}>
                 <div className="justify-center mt-28 mb-5">
                     < LogoMotto />
                 </div>
@@ -209,8 +216,8 @@ export default function LoginPage() {
                         <div className="icon bg-[url('/3.svg')] top-[14%] left-[25%] opacity-70 xl:left-[30%]"></div>
                         {/* Earbuds */}
                         <div className="icon bg-[url('/5.svg')] top-[10%] left-[5%] rotate-[20deg] opacity-70"></div>
-                         {/* ID */}
-                         <div className="icon bg-[url('/6.svg')] bottom-[10%] left-[25%] rotate-[20deg] opacity-70"></div>
+                        {/* ID */}
+                        <div className="icon bg-[url('/6.svg')] bottom-[10%] left-[25%] rotate-[20deg] opacity-70"></div>
                     </div>
                 </div>
 
@@ -280,12 +287,19 @@ export default function LoginPage() {
                                 Log In
                             </button>
                         </form>
-                        <p className="text-center text-sm text-gray-600 mt-4">
-                            Don't have an account?{' '}
-                            <Link href="/signup" className="text-red-600 hover:underline">
-                                Sign Up
-                            </Link>
-                        </p>
+                        <div className="flex justify-between">
+                            <p className="text-center text-sm text-gray-600 mt-4">
+                                <Link href="/signup" className="text-red-600 hover:underline">
+                                    Forgot Password?
+                                </Link>
+                            </p>
+                            <p className="text-center text-sm text-gray-600 mt-4">
+                                Don't have an account?{' '}
+                                <Link href="/signup" className="text-red-600 hover:underline">
+                                    Sign Up
+                                </Link>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
