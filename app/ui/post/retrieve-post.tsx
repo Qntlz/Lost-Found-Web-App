@@ -167,16 +167,16 @@ export default function MyPost() {
                                             <span className="mt-2"> {item.submittedAt?.toDate().toLocaleDateString()} {item.submittedAt?.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                                         </div>
                                         <div className="flex">
-                                        {/* Mark as Found Button */}
-                                        {item.status === "Missing" && (
-                                            <button
-                                                onClick={() => markAsFound(item.id)}
-                                                className="mt-1 bg-red-500 text-white px-3 py-1 rounded-md"
-                                            >
-                                                Mark as Found
-                                            </button>
-                                        )}
-                                    </div>
+                                            {/* Mark as Found Button */}
+                                            {item.status === "Missing" && (
+                                                <button
+                                                    onClick={() => markAsFound(item.id)}
+                                                    className="mt-1 bg-red-500 text-white px-3 py-1 rounded-md"
+                                                >
+                                                    Mark as Found
+                                                </button>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
