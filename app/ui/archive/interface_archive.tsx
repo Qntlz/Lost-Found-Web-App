@@ -1,27 +1,15 @@
 "use client";
 
-import clsx from "clsx";
-import Image from "next/image";
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import { ArchivePost } from "@/app/lib/definitions";
 
-// Define the Post type
-export interface Post {
-  id: string;
-  itemName: string;
-  description: string;
-  status: "Found" | "Missing";
-  campus: string;
-  building: string;
-  tags: string[];
-  user: string;
-  submittedAt: Date;
-}
 
 export default function Archive() {
-  const [archivedItems, setArchivedItems] = useState<Post[]>([]);
+  const [archivedItems, setArchivedItems] = useState<ArchivePost[]>([]);
 
   // Example archived posts (for demonstration purposes)
-  const exampleArchivedPosts: Post[] = [
+  const exampleArchivedPosts: ArchivePost[] = [
     {
       id: "1",
       itemName: "Lost Phone",
@@ -112,11 +100,10 @@ export default function Archive() {
                         ))}
                       </div>
                     </div>
-                    interface_archive
                     {/* Post Timestamp */}
                     <div className="mt-4 text-sm text-gray-500">
                       <span>Archived on: {item.submittedAt.toLocaleString()}</span>
-                    </div>interface_archive
+                    </div>
                   </div>
                 </div>
               </div>
@@ -125,7 +112,7 @@ export default function Archive() {
             <p>No archived posts available.</p>
           )}
         </div>
-      </div>interface_archive
+      </div>
     </div>
   );
 }
