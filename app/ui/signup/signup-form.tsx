@@ -73,13 +73,13 @@ export default function SignUpForm() {
                 // Firebase authentication
                 const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
                 const user = userCredential.user;
-                console.log("User signed up:", user);
+                //console.log("User signed up:", user);
     
                 // Update profile to include the name
                 await updateProfile(user, {
                     displayName: formData.name,
                 });
-                console.log("User signed up and profile updated:", user);
+                //console.log("User signed up and profile updated:", user);
     
                 // Store user metadata in Firestore
                 const userRef = doc(db, "users", user.uid); // Reference to the user's document
@@ -87,6 +87,7 @@ export default function SignUpForm() {
                     uid: user.uid,
                     name: formData.name,
                     email: formData.email,
+                    userType: 1,
                     createdAt: new Date(),
                 });
                 console.log("User data stored in Firestore");
