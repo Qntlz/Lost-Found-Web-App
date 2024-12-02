@@ -10,6 +10,7 @@ const links = [
     { name: 'My Post', href: '/post/edit'},
     { name: 'Saved', href: '/saved'},
     { name: 'Archives', href: '/archives'},
+    { name: 'Create Announcement', href: '/announcement'},
   ]
 
 export default function NavLinks() {
