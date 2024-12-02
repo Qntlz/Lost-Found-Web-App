@@ -15,7 +15,7 @@ export default function LostItemForm() {
     const [campus, setCampus] = useState<string>("Main");     // Default Value
     const [building, setBuilding] = useState('');
     const inputRef = useRef<HTMLInputElement | null>(null);
-    const [showCollections, setShowCollections] = useState(false);
+    const [showColors, setshowColors] = useState(false);
     const [showCommonItems, setShowCommonItems] = useState(false);
     const [selectedTags, setSelectedTags] = useState<string[]>([]);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -141,12 +141,13 @@ export default function LostItemForm() {
                         </div>
 
                         {/* Information Field */}
-                        <div className="">
+                        <div className="space-y-3">
 
                             {/* Item Field */}
-                            <Legend className="text-lg font-semibold text-black">Item details</Legend>
+                            <Legend className="text-lg font-semibold text-black mb-5">Item details</Legend>
                             <Field>
                                 <Label className="text-sm/6 font-medium text-black">Item Name:</Label>
+                                <Description className="text-sm/6 text-black/50">Enter item name.</Description>
                                 <Input
                                     value={itemName}
                                     onChange={(e) => setItemName(e.target.value)}
@@ -245,6 +246,7 @@ export default function LostItemForm() {
                                     <button
                                         type="button"
                                         className="text-sm font-medium text-black"
+                                        onClick={() => setshowColors(!showColors)}
                                     >
                                         Colors
                                     </button>
@@ -253,14 +255,13 @@ export default function LostItemForm() {
                                             <button
                                                 key={color}
                                                 type="button"
-                                                className={`px-3 py-1.5 rounded-full bg-gray-200 text-black hover:bg-gray-300 ${selectedTags.includes(color) ? 'border-[1px] border-red-500 bg-transparent hover:bg-transparent' : 'border-none'}`}
+                                                className={`px-3 py-1.5 rounded-full bg-gray-200 text-black hover:bg-gray-300 ${selectedTags.includes(color) ? 'border-2 border-red-500 bg-transparent hover:bg-transparent' : 'border-none'}`}
                                                 onClick={() => handleTagSelection(color)}
                                             >
                                                 {color}
                                             </button>
                                         ))}
                                     </div>
-
                                 </div>
 
                                 {/* Common Items */}
