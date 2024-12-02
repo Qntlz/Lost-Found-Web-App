@@ -9,6 +9,7 @@
 # testing
 /coverage
 app/(main_site)/test
+app/lib/admin.tsx
 
 # next.js
 /.next/
