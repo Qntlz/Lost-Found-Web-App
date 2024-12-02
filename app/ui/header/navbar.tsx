@@ -79,7 +79,7 @@ export default function Header() {
           <div className="flex w-full items-center">
             <div className="flex items-center">
               <button onClick={() => setShowNav(!showNav)}>
-                <Bars3Icon className="xl:hidden w-7 mr-2 mt-2 text-gray-500 cursor-pointer" />
+                <Bars3Icon className="lg:hidden w-7 mr-2 mt-2 text-gray-500 cursor-pointer" />
               </button>
               <span className={`${playfairDisplay.className} font-semibold text-red-500 text-2xl text-nowrap xl:ml-4`}>
                 LOST & FOUND
@@ -117,7 +117,7 @@ export default function Header() {
                 <BellAlertIcon className="w-7 text-red-500 transition duration-0 hover:duration-150 hover:scale-110" />
               </button>
             </div>
-            <div className="hidden xl:flex w-6 mx-2">
+            <div className="hidden lg:flex w-6 mx-2">
               {/* Add Avatar Here */}
               <button onClick={() => setShowProfileNav(!showProfileNav)}>
                   < DisplayProfile/>
