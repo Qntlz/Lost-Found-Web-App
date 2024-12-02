@@ -88,7 +88,7 @@ export default function SideNav({ show, closeNav }: { show: boolean; closeNav: (
                     <ChatBubbleLeftRightIcon className="h-6 w-6 mr-2" />
                     Chats
                 </Link>
-                <Link href={'/home'} onClick={closeNav} className="py-2 rounded-lg flex items-center">
+                <Link href={'/archives'} onClick={closeNav} className="py-2 rounded-lg flex items-center">
                     <ArchiveBoxArrowDownIcon className="h-6 w-6 mr-2" />
                     Archives
                 </Link>
