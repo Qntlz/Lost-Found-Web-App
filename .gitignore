@@ -10,6 +10,7 @@
 /coverage
 app/(main_site)/test
 app/lib/admin.tsx
+app/ui/admin
 
 # next.js
 /.next/
