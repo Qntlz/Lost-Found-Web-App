@@ -22,7 +22,7 @@ export default function Feed(){
         setSelectedStatus={setSelectedStatus} setSelectedCampus={setSelectedCampus} 
         setSelectedBuilding={setSelectedBuilding} setShowFilters={setShowFilters}/>
 
-      <div className={`overflow-y-scroll ${showFilters ? "h-[60vh] xl:mt-16" : "h-[70vh]"}`}>
+      <div className={`overflow-y-scroll no-scrollbar ${showFilters ? "h-[60vh] xl:mt-16" : "h-[70vh]"}`}>
         < Posts userList={userList} selectedStatus={selectedStatus}
           selectedCampus={selectedCampus} selectedBuilding={selectedBuilding} 
           items={items} showFilters={showFilters} setItems={setItems} 
