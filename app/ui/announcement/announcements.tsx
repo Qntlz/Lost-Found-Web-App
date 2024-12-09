@@ -51,7 +51,7 @@ export default function Announcements(): JSX.Element {
 
     return (
         <div className="relative">
-            <h2 className={`${inter.className} font-bold`}>Announcements</h2>
+            <h2 className={`${inter.className} font-bold ml-5 text-xl`}>Announcements</h2>
             <div className="mt-3 mx-3">
                 {announcements.map((announcement) => (
                     <div key={announcement.id} className="flex items-center mb-4">

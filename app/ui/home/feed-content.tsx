@@ -66,7 +66,7 @@ export default function Posts({
     }, [selectedStatus, selectedCampus, selectedBuilding]); // Refetch items on filter change
 
     return (
-        <div className={`transition-all duration-300 ${showFilters ? "pt-20" : "pt-4"
+        <div className={`transition-all duration-300 ${showFilters ? "pt-12" : "pt-4"
             }`}>
             {/* Display Filtered and Searched Items */}
             {items.length > 0 ? (

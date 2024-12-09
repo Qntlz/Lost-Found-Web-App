@@ -13,7 +13,7 @@ export default function Homepage() {
 
   return (
     <ProtectedRoute>
-      <div className={`${inter.className} mt-20 md:mt-[70px] grid grid-rows-1 lg:grid-cols-5 xl:grid-cols-12`}>
+      <div className={`${inter.className}mt-20 md:mt-[70px] grid grid-rows-1 lg:grid-cols-5 xl:grid-cols-12 divide-x-2`}>
 
         {/* Post Content */}
         <div className="lg:col-span-4 lg:col-start-2 xl:col-span-7 xl:col-start-3">
@@ -23,7 +23,7 @@ export default function Homepage() {
         </div>
 
         {/* Announcements Section */}
-        <div className="hidden xl:block">
+        <div className="hidden xl:block xl:mt-8">
           <div className="fixed lg:mt-24 lg:top-32 xl:top-0 xl:z-10">
             <Announcements />
           </div>
