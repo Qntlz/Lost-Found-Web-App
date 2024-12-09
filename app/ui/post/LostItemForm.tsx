@@ -37,6 +37,44 @@ export default function LostItemForm() {
         setSelectedFile(null);
     };
 
+    const uploadImage = async () => {
+        if (!selectedFile) return null;
+      
+        const reader = new FileReader();
+        reader.readAsDataURL(selectedFile);
+        
+        return new Promise((resolve, reject) => {
+          reader.onload = async () => {
+            try {
+              const response = await fetch("/api/upload", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ file: reader.result }),
+              });
+      
+              if (response.ok) {
+                const data = await response.json();
+                resolve(data.url);
+              } else {
+                console.error("Upload failed");
+                reject(null);
+              }
+            } catch (error) {
+              console.error("Error uploading file:", error);
+              reject(null);
+            }
+          };
+      
+          reader.onerror = () => {
+            console.error("Error reading file");
+            reject(null);
+          };
+        });
+      };
+      
+
     const handleCampusChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setCampus(event.target.value);
         setBuilding(''); // reset building when campus changes
@@ -62,51 +100,46 @@ export default function LostItemForm() {
         });
     };
 
-    const handleFormSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
-        const user = auth.currentUser;
-    
-        // Check if the user is authenticated
-        if (!user) {
-            alert("You need to be logged in to submit an item.");
-            return;
-        }
-    
-        try {
-            // Define document data 
-            const itemData = {
-                user: user.uid,
-                campus,
-                building,
-                itemName,
-                description,
-                status: "Missing",
-                tags: selectedTags,
-                imageUrl: selectedFile ? selectedFile.name : null, // Storing file name for now
-                submittedAt: Timestamp.now(), // Use Firebase Timestamp
-            };
-    
-            // Reference the user's submissions subcollection
-            const userItemsCollection = collection(db, "lostItems", user.uid, "submissions");
-    
-            // Reference the top-level "allSubmissions" collection
-            const allSubmissionsRef = collection(db, "allSubmissions");
-    
-            // Add document to the "allSubmissions" collection
-            const globalDocRef = await addDoc(allSubmissionsRef, itemData);
-    
-            // Add document to the user's subcollection with the `globalPostID` link
-            await addDoc(userItemsCollection, {
-                ...itemData,
-                globalPostID: globalDocRef.id, // Link to the global post
-            });
-    
-            //alert("Item saved successfully!");
-        } catch (error) {
-            console.error("Error saving item:", error);
-            alert("Failed to save item.");
-        }
-    };    
+    const handleFormSubmit = async (event:React.FormEvent) => {
+    event.preventDefault();
+    const user = auth.currentUser;
+
+    if (!user) {
+      alert("You need to be logged in to submit an item.");
+      return;
+    }
+
+    try {
+      const uploadedImageUrl = await uploadImage();
+
+      const itemData = {
+        user: user.uid,
+        campus,
+        building,
+        itemName,
+        description,
+        status: "Missing",
+        tags: selectedTags,
+        imageUrl: uploadedImageUrl,
+        submittedAt: Timestamp.now(),
+      };
+
+      const allSubmissionsRef = collection(db, "allSubmissions");
+      const globalDocRef = await addDoc(allSubmissionsRef, itemData);
+
+      const userItemsCollection = collection(db, "lostItems", user.uid, "submissions");
+      await addDoc(userItemsCollection, {
+        ...itemData,
+        globalPostID: globalDocRef.id,
+      });
+
+      //alert("Item saved successfully!");
+      router.push("/home");
+    } catch (error) {
+      console.error("Error saving item:", error);
+      //alert("Failed to save item.");
+    }
+  };    
 
     return (
         <div>
