@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      padding: {
+        '18' : '72px'
+      },
       screens: {
         'min-425': '425px',
         'min-820': '820px',
