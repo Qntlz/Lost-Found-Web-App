@@ -16,9 +16,9 @@ export default function FeedHeader({
   return (
     <div className="flex flex-row justify-between mx-4 pb-2 pt-3 lg:pt-8 xl:pt-5">
 
-    <div className="flex w-full justify-between md:mt-5 xl:mt-0">
+    <div className="flex w-full justify-between mt-20 md:mt-5 xl:mt-0">
       {/* Filter & Add Item Buttons */}
-      <div className="flex h-8 p-1 mt-2 mr-3 rounded-md border justify-self-end border-red-500 text-red-500 order-2 md:">
+      <div className="flex h-8 p-1 mt-2 mr-3 rounded-md border justify-self-end border-red-500 text-red-500 order-2">
         <Link href={'/post/make'} className="flex font-normal text-sm text-nowrap items-center">
           <PlusIcon className="mx-1 w-5" />
           Add Item
