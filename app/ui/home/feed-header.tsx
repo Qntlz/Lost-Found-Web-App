@@ -14,11 +14,11 @@ export default function FeedHeader({
   setSelectedBuilding, setShowFilters
 }: Feed) {
   return (
-    <div className="flex flex-row justify-between mx-4 pb-2 pt-3 lg:pt-8 xl:pt-5">
+    <div className="flex flex-row justify-between mx-4 pb-2 pt-3 lg:pt-8 xl:pt-12 xl:mx-0">
 
     <div className="flex w-full justify-between mt-20 md:mt-5 xl:mt-0">
       {/* Filter & Add Item Buttons */}
-      <div className="flex h-8 p-1 mt-2 mr-3 rounded-md border justify-self-end border-red-500 text-red-500 order-2">
+      <div className="flex h-8 p-1 mt-2 mr-3 rounded-md border justify-self-end border-red-500 text-red-500 order-2 xl:mr-10">
         <Link href={'/post/make'} className="flex font-normal text-sm text-nowrap items-center">
           <PlusIcon className="mx-1 w-5" />
           Add Item
@@ -37,7 +37,7 @@ export default function FeedHeader({
 
       {/* Filter Options */}
       {showFilters && (
-        <div className="w-full absolute top-36 left-0 p-4 py-2 flex flex-wrap gap-4 bg-white md:top-30 lg:top-44 lg:left-52  xl:top-40 xl:left-60 2xl:left-80">
+        <div className="w-full absolute top-36 left-0 p-4 py-2 flex flex-wrap gap-4 bg-white md:top-30 lg:top-44 lg:left-52 xl:top-40 xl:left-60 2xl:left-[305px]">
           <div className="flex gap-2">
 
             <select

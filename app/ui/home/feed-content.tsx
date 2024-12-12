@@ -78,7 +78,7 @@ export default function Posts({
             {items.length > 0 ? (
                 items.map((item) => (
                     // Post Section
-                    <div key={item.id} className="flex flex-col mx-7 rounded-lg mb-6 md:flex-row md:gap-8">
+                    <div key={item.id} className="flex flex-col mx-7 mb-6 md:flex-row md:gap-8">
 
                         {/* Item Image */}
                         <div className="flex w-full justify-center md:basis-2/5">
@@ -89,7 +89,8 @@ export default function Posts({
                                     width={200}
                                     height={200}
                                     unoptimized
-                                    style={{ width: "auto", height: "100%" }}
+                                    priority
+                                    style={{ width: 400, height: "100%" }}
                                     className="object-contain"
                                 />
                             ) : (
@@ -130,7 +131,7 @@ export default function Posts({
                                     item.tags.map((tag, index) => (
                                         <span
                                             key={`${tag}-${index}`}
-                                            className="px-3 py-1 outline outline-2 outline-red-500 rounded-full text-sm font-normal"
+                                            className="px-3 py-1 outline outline-1 outline-red-500 rounded-full text-sm font-normal"
                                         >
                                             {tag}
                                         </span>
